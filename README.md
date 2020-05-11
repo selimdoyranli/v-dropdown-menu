@@ -1,8 +1,8 @@
 # v-dropdown-menu
 
-Customizable dropdown menu plugin for vuejs. SSR supported.
+> Customizable dropdown menu plugin for vuejs. SSR supported.
 
-Demo:
+ ✨ Demo:
    [https://v-dropdown-menu.now.sh](https://v-dropdown-menu.now.sh)
    
    NPM:
@@ -68,9 +68,17 @@ Demo:
 |footer|footer of menu container (optional)|
 
 
+## Author
 
-.
+👤 **selimdoyranli**
+
+* Website: [@selimdoyranli](https://selimdoyranli.com)
+* Github: [@selimdoyranli](https://github.com/selimdoyranli)
+* LinkedIn: [@selimdoyranli](https://linkedin.com/in/selimdoyranli)
+* Team: [@RadKod](https://radkod.com)
+
+___
 
 CREATED BY
 
-[![RadKod](https://i.ibb.co/q5G6N0n/radkod-mail-imza.png)](https://www.radkod.com)
+ [![RadKod](https://i.ibb.co/q5G6N0n/radkod-mail-imza.png)](https://www.radkod.com)
