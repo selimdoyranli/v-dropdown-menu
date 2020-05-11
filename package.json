@@ -1,6 +1,6 @@
 {
   "name": "v-dropdown-menu",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Dropdown menu plugin for vuejs, supported ssr.",
   "main": "dist/v-dropdown-menu.js",
   "browser": "dist/v-dropdown-menu.esm.js",
@@ -8,7 +8,8 @@
   "unpkg": "dist/v-dropdown-menu.min.js",
   "files": [
     "dist/*",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "./README.md"
   ],
   "scripts": {
     "serve": "vue-cli-service serve dev/serve.js",
@@ -53,7 +54,7 @@
     "Selim Doyranlı <selim@radkod.com> (https://selimdoyranli.com)"
   ],
   "bugs": "selim@radkod.com",
-  "homepage": "https://www.radkod.com",
+  "homepage": "https://v-dropdown-menu.now.sh",
   "repository": {
     "type": "git",
     "url": "https://github.com/RadKod/v-dropdown-menu"
