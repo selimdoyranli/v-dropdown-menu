@@ -1,11 +1,11 @@
 {
   "name": "v-dropdown-menu",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Dropdown menu plugin for vuejs, supported ssr.",
-  "main": "dist/dropdown-menu.js",
-  "browser": "dist/vue-dropdown-menu.esm.js",
-  "module": "dist/vue-dropdown-menu.esm.js",
-  "unpkg": "dist/vue-dropdown-menu.min.js",
+  "main": "dist/v-dropdown-menu.js",
+  "browser": "dist/v-dropdown-menu.esm.js",
+  "module": "dist/v-dropdown-menu.esm.js",
+  "unpkg": "dist/v-dropdown-menu.min.js",
   "files": [
     "dist/*",
     "src/**/*.vue"
