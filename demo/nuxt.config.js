@@ -60,7 +60,7 @@ module.exports = {
    ** Plugins to load before mounting the App (NPM or your modules & vue plugins)
    */
   plugins: [
-    { src: '~/plugins/v-dropdown-menu.js', ssr: false } // Doc: https://github.com/radkod/v-dropdown-menu
+    { src: '~/plugins/v-dropdown-menu.js' } // Doc: https://github.com/radkod/v-dropdown-menu
   ],
 
   /*

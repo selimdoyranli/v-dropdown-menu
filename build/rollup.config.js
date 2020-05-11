@@ -6,6 +6,7 @@ import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import babel from 'rollup-plugin-babel';
+import css from 'rollup-plugin-css-only';
 import { terser } from 'rollup-plugin-terser';
 import minimist from 'minimist';
 
@@ -71,7 +72,7 @@ if (!argv.format || argv.format === 'es') {
     ...baseConfig,
     external,
     output: {
-      file: 'dist/vue-dropdown-menu.js',
+      file: 'dist/v-dropdown-menu.esm.js',
       format: 'esm',
       exports: 'named',
     },
@@ -105,7 +106,7 @@ if (!argv.format || argv.format === 'cjs') {
     external,
     output: {
       compact: true,
-      file: 'dist/vue-dropdown-menu.ssr.js',
+      file: 'dist/v-dropdown-menu.js',
       format: 'cjs',
       name: 'DropdownMenu',
       exports: 'named',
@@ -114,11 +115,14 @@ if (!argv.format || argv.format === 'cjs') {
     plugins: [
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
+      css(),
       vue({
         ...baseConfig.plugins.vue,
+        preprocessStyles: true,
+        css: false,
         template: {
           ...baseConfig.plugins.vue.template,
-          optimizeSSR: true,
+          optimizeSSR: false,
         },
       }),
       babel(baseConfig.plugins.babel),
@@ -134,7 +138,7 @@ if (!argv.format || argv.format === 'iife') {
     external,
     output: {
       compact: true,
-      file: 'dist/vue-dropdown-menu.min.js',
+      file: 'dist/v-dropdown-menu.min.js',
       format: 'iife',
       name: 'DropdownMenu',
       exports: 'named',

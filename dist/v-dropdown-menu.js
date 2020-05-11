@@ -57,7 +57,7 @@ var script = {
     menuZIndex: {
       type: String,
       required: false,
-      default: 994
+      default: '994'
     },
     overlay: {
       type: Boolean,
@@ -72,7 +72,7 @@ var script = {
     overlayZIndex: {
       type: String,
       required: false,
-      default: 992
+      default: '992'
     }
   },
   data: function data() {
@@ -87,11 +87,11 @@ var script = {
       var menuDirection = null;
 
       if (this.menuDirection === 'left') {
-        menuDirection = 'vue-dropdown-menu__container--direction-left';
+        menuDirection = 'v-dropdown-menu__container--direction-left';
       } else if (this.menuDirection === 'right') {
-        menuDirection = 'vue-dropdown-menu__container--direction-right';
+        menuDirection = 'v-dropdown-menu__container--direction-right';
       } else {
-        menuDirection = 'vue-dropdown-menu__container--direction-center';
+        menuDirection = 'v-dropdown-menu__container--direction-center';
       }
 
       return menuDirection;
@@ -235,46 +235,6 @@ var script = {
         }
     }
     return script;
-}function createInjectorSSR(context) {
-    if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__;
-    }
-    if (!context)
-        return () => { };
-    if (!('styles' in context)) {
-        context._styles = context._styles || {};
-        Object.defineProperty(context, 'styles', {
-            enumerable: true,
-            get: () => context._renderStyles(context._styles)
-        });
-        context._renderStyles = context._renderStyles || renderStyles;
-    }
-    return (id, style) => addStyle(id, style, context);
-}
-function addStyle(id, css, context) {
-    const group =  css.media || 'default' ;
-    const style = context._styles[group] || (context._styles[group] = { ids: [], css: '' });
-    if (!style.ids.includes(id)) {
-        style.media = css.media;
-        style.ids.push(id);
-        let code = css.source;
-        style.css += code + '\n';
-    }
-}
-function renderStyles(styles) {
-    let css = '';
-    for (const key in styles) {
-        const style = styles[key];
-        css +=
-            '<style data-vue-ssr-id="' +
-                Array.from(style.ids).join(' ') +
-                '"' +
-                (style.media ? ' media="' + style.media + '"' : '') +
-                '>' +
-                style.css +
-                '</style>';
-    }
-    return css;
 }/* script */
 var __vue_script__ = script;
 /* template */
@@ -288,48 +248,89 @@ var __vue_render__ = function __vue_render__() {
 
   return _c('div', {
     ref: "dropdown",
-    staticClass: "vue-dropdown-menu"
-  }, [_vm.mode == 'hover' ? _vm._ssrNode("<div class=\"vue-dropdown-menu__trigger vue-dropdown-menu__trigger--mode-hover\">", "</div>", [_vm._t("trigger")], 2) : _vm._e(), _vm.mode == 'hover' ? _vm._ssrNode("<div" + _vm._ssrClass("vue-dropdown-menu__container vue-dropdown-menu__container--mode-hover", [_vm.dropdownMenuDirection]) + _vm._ssrStyle(null, {
-    'z-index': _vm.menuZIndex
-  }, null) + ">", "</div>", [_vm._ssrNode("<div class=\"vue-dropdown-menu__header\">", "</div>", [_vm._t("header")], 2), _vm._ssrNode("<div class=\"vue-dropdown-menu__body\">", "</div>", [_vm._t("body")], 2), _vm._ssrNode("<div class=\"vue-dropdown-menu__footer\">", "</div>", [_vm._t("footer")], 2)]) : _vm._e(), _vm.mode == 'click' ? _vm._ssrNode("<div class=\"vue-dropdown-menu__trigger vue-dropdown-menu__trigger--mode-click\">", "</div>", [_vm._t("trigger")], 2) : _vm._e(), _vm.mode == 'click' ? _vm._ssrNode("<div" + _vm._ssrClass("vue-dropdown-menu__container vue-dropdown-menu__container--mode-click", [{
-    'vue-dropdown-menu__container--active': _vm.isShow
-  }, _vm.dropdownMenuDirection]) + _vm._ssrStyle(null, {
-    'z-index': _vm.menuZIndex
-  }, null) + ">", "</div>", [_vm._ssrNode("<div class=\"vue-dropdown-menu__header\">", "</div>", [_vm._t("header")], 2), _vm._ssrNode("<div class=\"vue-dropdown-menu__body\">", "</div>", [_vm._t("body")], 2), _vm._ssrNode("<div class=\"vue-dropdown-menu__footer\">", "</div>", [_vm._t("footer")], 2)]) : _vm._e(), _vm._ssrNode(_vm.withOverlay && _vm.closeOnClickOutside ? "<div class=\"vue-dropdown-menu__overlay\"" + _vm._ssrStyle(null, {
-    'background-color': _vm.overlayBgColor,
-    'z-index': _vm.overlayZIndex
-  }, {
-    display: _vm.isShow ? '' : 'none'
-  }) + "></div>" : "<!---->")], 2);
+    staticClass: "v-dropdown-menu"
+  }, [_vm.mode == 'hover' ? _c('div', {
+    ref: "dropdownMenuTrigger",
+    staticClass: "v-dropdown-menu__trigger v-dropdown-menu__trigger--mode-hover"
+  }, [_vm._t("trigger")], 2) : _vm._e(), _vm.mode == 'hover' ? _c('div', {
+    staticClass: "v-dropdown-menu__container v-dropdown-menu__container--mode-hover",
+    class: [_vm.dropdownMenuDirection],
+    style: {
+      'z-index': _vm.menuZIndex
+    }
+  }, [_c('div', {
+    staticClass: "v-dropdown-menu__header"
+  }, [_vm._t("header")], 2), _c('div', {
+    staticClass: "v-dropdown-menu__body"
+  }, [_vm._t("body")], 2), _c('div', {
+    staticClass: "v-dropdown-menu__footer"
+  }, [_vm._t("footer")], 2)]) : _vm._e(), _vm.mode == 'click' ? _c('div', {
+    ref: "dropdownMenuTrigger",
+    staticClass: "v-dropdown-menu__trigger v-dropdown-menu__trigger--mode-click",
+    on: {
+      "mousedown": function mousedown($event) {
+        $event.preventDefault();
+        _vm.isShow = !_vm.isShow;
+      }
+    }
+  }, [_vm._t("trigger")], 2) : _vm._e(), _vm.mode == 'click' ? _c('div', {
+    staticClass: "v-dropdown-menu__container v-dropdown-menu__container--mode-click",
+    class: [{
+      'v-dropdown-menu__container--active': _vm.isShow
+    }, _vm.dropdownMenuDirection],
+    style: {
+      'z-index': _vm.menuZIndex
+    }
+  }, [_c('div', {
+    staticClass: "v-dropdown-menu__header"
+  }, [_vm._t("header")], 2), _c('div', {
+    staticClass: "v-dropdown-menu__body"
+  }, [_vm._t("body")], 2), _c('div', {
+    staticClass: "v-dropdown-menu__footer"
+  }, [_vm._t("footer")], 2)]) : _vm._e(), _vm.withOverlay && _vm.closeOnClickOutside ? _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.isShow,
+      expression: "isShow"
+    }],
+    ref: "overlay",
+    staticClass: "v-dropdown-menu__overlay",
+    style: {
+      'background-color': _vm.overlayBgColor,
+      'z-index': _vm.overlayZIndex
+    },
+    on: {
+      "mousedown": function mousedown($event) {
+        _vm.isShow = false;
+      }
+    }
+  }) : _vm._e()]);
 };
 
 var __vue_staticRenderFns__ = [];
 /* style */
 
-var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
-  if (!inject) return;
-  inject("data-v-040d7cfb_0", {
-    source: ".vue-dropdown-menu{position:relative;display:inline-block}.vue-dropdown-menu .vue-dropdown-menu__container--active,.vue-dropdown-menu .vue-dropdown-menu__container--mode-hover:hover,.vue-dropdown-menu .vue-dropdown-menu__trigger--mode-hover:hover+.vue-dropdown-menu__container--mode-hover{opacity:1;visibility:visible;top:35px}.vue-dropdown-menu__container{background-color:#fff;min-width:230px;max-width:100%;position:absolute;top:40px;opacity:0;visibility:hidden;overflow:hidden}.vue-dropdown-menu__container--mode-hover{transition:.1s;transition-delay:.2s}.vue-dropdown-menu__container--direction-left{left:0}.vue-dropdown-menu__container--direction-right{right:0}.vue-dropdown-menu__container--direction-center{left:50%;transform:translate(-50%,0)}.vue-dropdown-menu__overlay{position:fixed;top:0;left:0;width:100%;height:100vh}",
-    map: undefined,
-    media: undefined
-  });
-};
+var __vue_inject_styles__ = undefined;
 /* scoped */
-
 
 var __vue_scope_id__ = undefined;
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-040d7cfb";
+var __vue_module_identifier__ = undefined;
 /* functional template */
 
 var __vue_is_functional_template__ = false;
+/* style inject */
+
+/* style inject SSR */
+
 /* style inject shadow dom */
 
 var __vue_component__ = normalizeComponent({
   render: __vue_render__,
   staticRenderFns: __vue_staticRenderFns__
-}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, createInjectorSSR, undefined);// Import vue component
+}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);// Import vue component
 
 var install = function installDropdownMenu(Vue) {
   if (install.installed) return;

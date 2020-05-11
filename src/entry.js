@@ -1,5 +1,5 @@
 // Import vue component
-import component from './vue-dropdown-menu.vue';
+import component from './v-dropdown-menu.vue';
 
 // install function executed by Vue.use()
 const install = function installDropdownMenu(Vue) {

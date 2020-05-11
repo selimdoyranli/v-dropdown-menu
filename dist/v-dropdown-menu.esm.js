@@ -57,7 +57,7 @@ var script = {
     menuZIndex: {
       type: String,
       required: false,
-      default: 994
+      default: '994'
     },
     overlay: {
       type: Boolean,
@@ -72,7 +72,7 @@ var script = {
     overlayZIndex: {
       type: String,
       required: false,
-      default: 992
+      default: '992'
     }
   },
 
@@ -89,11 +89,11 @@ var script = {
       let menuDirection = null;
 
       if (this.menuDirection === 'left') {
-        menuDirection = 'vue-dropdown-menu__container--direction-left';
+        menuDirection = 'v-dropdown-menu__container--direction-left';
       } else if (this.menuDirection === 'right') {
-        menuDirection = 'vue-dropdown-menu__container--direction-right';
+        menuDirection = 'v-dropdown-menu__container--direction-right';
       } else {
-        menuDirection = 'vue-dropdown-menu__container--direction-center';
+        menuDirection = 'v-dropdown-menu__container--direction-center';
       }
 
       return menuDirection;
@@ -312,25 +312,25 @@ var __vue_render__ = function () {
 
   return _c('div', {
     ref: "dropdown",
-    staticClass: "vue-dropdown-menu"
+    staticClass: "v-dropdown-menu"
   }, [_vm.mode == 'hover' ? _c('div', {
     ref: "dropdownMenuTrigger",
-    staticClass: "vue-dropdown-menu__trigger vue-dropdown-menu__trigger--mode-hover"
+    staticClass: "v-dropdown-menu__trigger v-dropdown-menu__trigger--mode-hover"
   }, [_vm._t("trigger")], 2) : _vm._e(), _vm.mode == 'hover' ? _c('div', {
-    staticClass: "vue-dropdown-menu__container vue-dropdown-menu__container--mode-hover",
+    staticClass: "v-dropdown-menu__container v-dropdown-menu__container--mode-hover",
     class: [_vm.dropdownMenuDirection],
     style: {
       'z-index': _vm.menuZIndex
     }
   }, [_c('div', {
-    staticClass: "vue-dropdown-menu__header"
+    staticClass: "v-dropdown-menu__header"
   }, [_vm._t("header")], 2), _c('div', {
-    staticClass: "vue-dropdown-menu__body"
+    staticClass: "v-dropdown-menu__body"
   }, [_vm._t("body")], 2), _c('div', {
-    staticClass: "vue-dropdown-menu__footer"
+    staticClass: "v-dropdown-menu__footer"
   }, [_vm._t("footer")], 2)]) : _vm._e(), _vm.mode == 'click' ? _c('div', {
     ref: "dropdownMenuTrigger",
-    staticClass: "vue-dropdown-menu__trigger vue-dropdown-menu__trigger--mode-click",
+    staticClass: "v-dropdown-menu__trigger v-dropdown-menu__trigger--mode-click",
     on: {
       "mousedown": function ($event) {
         $event.preventDefault();
@@ -338,19 +338,19 @@ var __vue_render__ = function () {
       }
     }
   }, [_vm._t("trigger")], 2) : _vm._e(), _vm.mode == 'click' ? _c('div', {
-    staticClass: "vue-dropdown-menu__container vue-dropdown-menu__container--mode-click",
+    staticClass: "v-dropdown-menu__container v-dropdown-menu__container--mode-click",
     class: [{
-      'vue-dropdown-menu__container--active': _vm.isShow
+      'v-dropdown-menu__container--active': _vm.isShow
     }, _vm.dropdownMenuDirection],
     style: {
       'z-index': _vm.menuZIndex
     }
   }, [_c('div', {
-    staticClass: "vue-dropdown-menu__header"
+    staticClass: "v-dropdown-menu__header"
   }, [_vm._t("header")], 2), _c('div', {
-    staticClass: "vue-dropdown-menu__body"
+    staticClass: "v-dropdown-menu__body"
   }, [_vm._t("body")], 2), _c('div', {
-    staticClass: "vue-dropdown-menu__footer"
+    staticClass: "v-dropdown-menu__footer"
   }, [_vm._t("footer")], 2)]) : _vm._e(), _vm.withOverlay && _vm.closeOnClickOutside ? _c('div', {
     directives: [{
       name: "show",
@@ -359,7 +359,7 @@ var __vue_render__ = function () {
       expression: "isShow"
     }],
     ref: "overlay",
-    staticClass: "vue-dropdown-menu__overlay",
+    staticClass: "v-dropdown-menu__overlay",
     style: {
       'background-color': _vm.overlayBgColor,
       'z-index': _vm.overlayZIndex
@@ -377,8 +377,8 @@ var __vue_staticRenderFns__ = [];
 
 const __vue_inject_styles__ = function (inject) {
   if (!inject) return;
-  inject("data-v-040d7cfb_0", {
-    source: ".vue-dropdown-menu{position:relative;display:inline-block}.vue-dropdown-menu .vue-dropdown-menu__container--active,.vue-dropdown-menu .vue-dropdown-menu__container--mode-hover:hover,.vue-dropdown-menu .vue-dropdown-menu__trigger--mode-hover:hover+.vue-dropdown-menu__container--mode-hover{opacity:1;visibility:visible;top:35px}.vue-dropdown-menu__container{background-color:#fff;min-width:230px;max-width:100%;position:absolute;top:40px;opacity:0;visibility:hidden;overflow:hidden}.vue-dropdown-menu__container--mode-hover{transition:.1s;transition-delay:.2s}.vue-dropdown-menu__container--direction-left{left:0}.vue-dropdown-menu__container--direction-right{right:0}.vue-dropdown-menu__container--direction-center{left:50%;transform:translate(-50%,0)}.vue-dropdown-menu__overlay{position:fixed;top:0;left:0;width:100%;height:100vh}",
+  inject("data-v-23af458d_0", {
+    source: ".v-dropdown-menu{position:relative;display:inline-block}.v-dropdown-menu .v-dropdown-menu__container--active,.v-dropdown-menu .v-dropdown-menu__container--mode-hover:hover,.v-dropdown-menu .v-dropdown-menu__trigger--mode-hover:hover+.v-dropdown-menu__container--mode-hover{opacity:1;visibility:visible;top:35px}.v-dropdown-menu__container{background-color:#fff;border:1px solid #ddd;min-width:230px;max-width:100%;position:absolute;top:40px;opacity:0;visibility:hidden;overflow:hidden}.v-dropdown-menu__container--mode-hover{transition:.1s;transition-delay:.2s}.v-dropdown-menu__container--direction-left{left:0}.v-dropdown-menu__container--direction-right{right:0}.v-dropdown-menu__container--direction-center{left:50%;transform:translate(-50%,0)}.v-dropdown-menu__overlay{position:fixed;top:0;left:0;width:100%;height:100vh}",
     map: undefined,
     media: undefined
   });

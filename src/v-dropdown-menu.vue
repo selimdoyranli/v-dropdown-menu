@@ -1,29 +1,29 @@
 <template lang="pug">
-.vue-dropdown-menu(ref="dropdown")
+.v-dropdown-menu(ref="dropdown")
   // For Hover Mode
-  .vue-dropdown-menu__trigger.vue-dropdown-menu__trigger--mode-hover(ref="dropdownMenuTrigger" v-if="mode == 'hover'")
+  .v-dropdown-menu__trigger.v-dropdown-menu__trigger--mode-hover(ref="dropdownMenuTrigger" v-if="mode == 'hover'")
     slot(name='trigger')
-  .vue-dropdown-menu__container.vue-dropdown-menu__container--mode-hover(v-if="mode == 'hover'" :class="[dropdownMenuDirection]" :style="{'z-index': menuZIndex}")
-    .vue-dropdown-menu__header
+  .v-dropdown-menu__container.v-dropdown-menu__container--mode-hover(v-if="mode == 'hover'" :class="[dropdownMenuDirection]" :style="{'z-index': menuZIndex}")
+    .v-dropdown-menu__header
       slot(name="header")
-    .vue-dropdown-menu__body
+    .v-dropdown-menu__body
       slot(name='body')
-    .vue-dropdown-menu__footer
+    .v-dropdown-menu__footer
       slot(name="footer")
 
   // For Click Mode
-  .vue-dropdown-menu__trigger.vue-dropdown-menu__trigger--mode-click(v-if="mode == 'click'" ref="dropdownMenuTrigger" @mousedown.prevent="isShow = !isShow")
+  .v-dropdown-menu__trigger.v-dropdown-menu__trigger--mode-click(v-if="mode == 'click'" ref="dropdownMenuTrigger" @mousedown.prevent="isShow = !isShow")
     slot(name='trigger')
-  .vue-dropdown-menu__container.vue-dropdown-menu__container--mode-click(v-if="mode == 'click'" :class="[{'vue-dropdown-menu__container--active': isShow}, dropdownMenuDirection]" :style="{'z-index': menuZIndex}")
-    .vue-dropdown-menu__header
+  .v-dropdown-menu__container.v-dropdown-menu__container--mode-click(v-if="mode == 'click'" :class="[{'v-dropdown-menu__container--active': isShow}, dropdownMenuDirection]" :style="{'z-index': menuZIndex}")
+    .v-dropdown-menu__header
       slot(name="header")
-    .vue-dropdown-menu__body
+    .v-dropdown-menu__body
       slot(name='body')
-    .vue-dropdown-menu__footer
+    .v-dropdown-menu__footer
       slot(name="footer")
 
   // Overlay
-  .vue-dropdown-menu__overlay(ref="overlay" v-if="withOverlay && closeOnClickOutside" v-show="isShow" :style="{'background-color': overlayBgColor, 'z-index': overlayZIndex}" @mousedown="isShow = false")
+  .v-dropdown-menu__overlay(ref="overlay" v-if="withOverlay && closeOnClickOutside" v-show="isShow" :style="{'background-color': overlayBgColor, 'z-index': overlayZIndex}" @mousedown="isShow = false")
 </template>
 
 <script>
@@ -58,7 +58,7 @@ export default {
     menuZIndex: {
       type: String,
       required: false,
-      default: 994,
+      default: '994',
     },
     overlay: {
       type: Boolean,
@@ -73,7 +73,7 @@ export default {
     overlayZIndex: {
       type: String,
       required: false,
-      default: 992,
+      default: '992',
     },
   },
   data() {
@@ -88,11 +88,11 @@ export default {
       let menuDirection = null;
 
       if (this.menuDirection === 'left') {
-        menuDirection = 'vue-dropdown-menu__container--direction-left';
+        menuDirection = 'v-dropdown-menu__container--direction-left';
       } else if (this.menuDirection === 'right') {
-        menuDirection = 'vue-dropdown-menu__container--direction-right';
+        menuDirection = 'v-dropdown-menu__container--direction-right';
       } else {
-        menuDirection = 'vue-dropdown-menu__container--direction-center';
+        menuDirection = 'v-dropdown-menu__container--direction-center';
       }
 
       return menuDirection;
@@ -162,7 +162,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vue-dropdown-menu {
+.v-dropdown-menu {
   position: relative;
   display: inline-block;
   %active {
@@ -172,6 +172,7 @@ export default {
   }
   &__container {
     background-color: #fff;
+    border: 1px solid #ddd;
     min-width: 230px;
     max-width: 100%;
     position: absolute;
@@ -201,7 +202,7 @@ export default {
     }
   }
   &__trigger {
-    &--mode-hover:hover + .vue-dropdown-menu__container {
+    &--mode-hover:hover + .v-dropdown-menu__container {
       &--mode-hover {
         @extend %active;
       }
