@@ -69,4 +69,8 @@ Customizable dropdown menu plugin for vuejs. SSR supported.
 
 
 
- **[created by @radkod](https://radkod.com)**
+.
+
+CREATED BY
+
+ [![RadKod](https://i.ibb.co/q5G6N0n/radkod-mail-imza.png)](https://www.radkod.com)
