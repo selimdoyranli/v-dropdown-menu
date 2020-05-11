@@ -1,6 +1,6 @@
 {
   "name": "v-dropdown-menu",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Dropdown menu plugin for vuejs, supported ssr.",
   "main": "dist/v-dropdown-menu.js",
   "browser": "dist/v-dropdown-menu.esm.js",
