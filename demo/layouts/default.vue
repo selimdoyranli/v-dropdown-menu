@@ -18,5 +18,6 @@ export default {
 <style lang="scss" scoped>
 .default-layout {
   position: relative;
+  overflow: hidden;
 }
 </style>
