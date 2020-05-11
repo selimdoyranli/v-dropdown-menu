@@ -1,6 +1,6 @@
 {
-  "name": "vue-dropdown-menu",
-  "version": "1.0.0",
+  "name": "v-dropdown-menu",
+  "version": "1.0.1",
   "description": "Dropdown menu plugin for vuejs, supported ssr.",
   "main": "dist/dropdown-menu.ssr.js",
   "browser": "dist/vue-dropdown-menu.js",
@@ -55,7 +55,7 @@
   "homepage": "https://www.radkod.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/RadKod/vue-dropdown-menu"
+    "url": "https://github.com/RadKod/v-dropdown-menu"
   },
   "private": false,
   "license": "MIT"

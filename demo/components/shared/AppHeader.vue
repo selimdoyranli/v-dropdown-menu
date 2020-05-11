@@ -1,6 +1,6 @@
 <template lang="pug">
 header.app-header
-  h1.title vue-dropdown-menu
+  h1.title v-dropdown-menu
 </template>
 
 <script>
