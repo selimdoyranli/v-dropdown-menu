@@ -2,7 +2,7 @@
 .page
 
   blockquote.desc Customizable dropdown menu plugin for vuejs. SSR supported.&nbsp;&nbsp;
-    a(href="https://github.com/radkod.com/v-dropdown-menu" target="_blank" title="v-dropdown-menu documentation") See doc.
+    a(href="https://github.com/RadKod/v-dropdown-menu" target="_blank" title="v-dropdown-menu documentation") See doc.
 
   .wrapper
 
