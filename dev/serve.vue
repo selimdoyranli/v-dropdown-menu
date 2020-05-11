@@ -1,6 +1,7 @@
 <script>
 import Vue from 'vue';
-import DropdownMenu from '../dist/vue-dropdown-menu';
+import DropdownMenu from '../dist/v-dropdown-menu';
+import '../dist/v-dropdown-menu.css';
 
 export default Vue.extend({
   name: 'ServeDev',
