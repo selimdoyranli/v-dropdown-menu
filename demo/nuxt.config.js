@@ -16,6 +16,7 @@ module.exports = {
       },
       { hid: 'description', name: 'description', content: pkg.description }
     ],
+    script: [{ src: 'https://cdn.jsdelivr.net/npm/gist-embed@1.0.3/dist/gist-embed.min.js' }],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
