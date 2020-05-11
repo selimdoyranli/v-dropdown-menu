@@ -2,7 +2,7 @@
 .page
 
   p.desc Customizable dropdown menu plugin for vuejs. SSR supported.&nbsp;&nbsp;
-    a(href="https://github.com/radkod.com/vue-dropdown-menu" target="_blank" title="vue-dropdown-menu documentation") See doc.
+    a(href="https://github.com/radkod.com/v-dropdown-menu" target="_blank" title="v-dropdown-menu documentation") See doc.
   .demo-menu-wrapper
     p.demo-menu-desc Default
     dropdown-menu
@@ -12,13 +12,14 @@
         li(v-for="i in 6")
           a(href="") Item {{i}}
       footer(slot="footer") Dropdown Footer
+
 </template>
 
 <script>
 export default {
   head() {
     return {
-      title: 'vue-dropdown-menu | Customizable dropdown menu plugin for vuejs.'
+      title: 'v-dropdown-menu | Customizable dropdown menu plugin for vuejs.'
     }
   }
 }
