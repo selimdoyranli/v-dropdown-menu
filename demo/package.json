@@ -21,7 +21,7 @@
     "cross-env": "^5.2.0",
     "express": "^4.17.1",
     "nuxt": "2.12.2",
-    "v-dropdown-menu": "^1.0.1"
+    "v-dropdown-menu": "^1.0.3"
   },
   "devDependencies": {
     "@babel/core": "7.5.4",
