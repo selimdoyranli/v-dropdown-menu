@@ -2,7 +2,7 @@
 
 Customizable dropdown menu plugin for vuejs. SSR supported.
 
-  Demo:
+Demo:
    [https://v-dropdown-menu.now.sh](https://v-dropdown-menu.now.sh)
    
    NPM:
@@ -66,3 +66,11 @@ Customizable dropdown menu plugin for vuejs. SSR supported.
 |header|header of menu container (optional)|
 |body|content of menu (optional)|
 |footer|footer of menu container (optional)|
+
+
+
+.
+
+CREATED BY
+
+[![RadKod](https://i.ibb.co/q5G6N0n/radkod-mail-imza.png)](https://www.radkod.com)
