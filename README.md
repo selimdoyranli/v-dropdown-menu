@@ -15,7 +15,7 @@
 
     npm install v-dropdown-menu --save
 
-#### Register
+#### Global Register
 
     import Vue from 'vue'
     import DropdownMenu from 'v-dropdown-menu'
@@ -23,7 +23,18 @@
     
     Vue.use(DropdownMenu)  
  
- #### Via CDN
+#### Local Register
+
+    import DropdownMenu from 'v-dropdown-menu'
+    import 'v-dropdown-menu/dist/v-dropdown-menu.css' // Base style, required.
+    
+    export default {
+      components: {
+        DropdownMenu
+      }
+    }
+
+#### Via CDN
 
     <script src="https://unpkg.com/v-dropdown-menu"></script>
     <script>
