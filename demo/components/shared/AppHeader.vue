@@ -20,8 +20,7 @@ export default {}
     position: relative;
     .logo-img {
       position: relative;
-      bottom: -3px;
-      height: 40px;
+      height: 30px;
       object-fit: contain;
     }
   }
