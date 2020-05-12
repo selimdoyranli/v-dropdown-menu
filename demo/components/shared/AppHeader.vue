@@ -1,7 +1,7 @@
 <template lang="pug">
 header.app-header
-  h1.title
-    a(href="https://www.npmjs.com/package/v-dropdown-menu" target="_blank" title="v-dropdown-menu") v-dropdown-menu
+  a.logo(href="https://www.npmjs.com/package/v-dropdown-menu" target="_blank" title="v-dropdown-menu")
+    img.logo-img(src="@/assets/img/core/logo.png" alt="v-dropdown-menu")
 </template>
 
 <script>
@@ -16,10 +16,13 @@ export default {}
   display: flex;
   align-items: center;
   padding: 0 2em;
-  .title {
-    a {
-      text-decoration: none;
-      color: #4fc08d;
+  .logo {
+    position: relative;
+    .logo-img {
+      position: relative;
+      bottom: -3px;
+      height: 40px;
+      object-fit: contain;
     }
   }
 }
