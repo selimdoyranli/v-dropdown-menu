@@ -9,8 +9,9 @@ section.demo-menu-wrapper
       li(v-for="i in 6")
         a(href="") Item {{i}}
     footer(slot="footer") Dropdown Footer
-  p ex: style code
-  code(data-gist-id="c11784454885621daa2663b1b84c4fb8")
+  p ex. code
+  code(data-gist-id="765dde383be86d8e8cd365dc7599a46f")
+  code(data-gist-id="8a7f16e4b738314d307079527d30da00")
 </template>
 
 <style lang="scss">

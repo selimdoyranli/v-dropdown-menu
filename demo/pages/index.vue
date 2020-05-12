@@ -165,6 +165,7 @@ export default {
   position: relative;
   padding: 2em;
   padding-bottom: 50vh;
+  overflow: auto;
   .desc {
     font-size: 16px;
     color: #222;
@@ -198,6 +199,11 @@ export default {
     .wrapper {
       grid-template-columns: repeat(1, 1fr);
     }
+  }
+}
+@media (max-width: 992px) {
+  .page {
+    padding: 2em 0;
   }
 }
 </style>
