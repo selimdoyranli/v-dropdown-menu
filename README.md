@@ -1,14 +1,17 @@
-# v-dropdown-menu
+
+[![v-dropdown-menu](https://raw.githubusercontent.com/RadKod/v-dropdown-menu/master/preview_assets/v-dropdown-menu-logo.png)](https://www.npmjs.com/package/v-dropdown-menu)
 
 > Customizable dropdown menu plugin for vuejs. SSR supported.
+
+![v-dropdown-menu](https://raw.githubusercontent.com/RadKod/v-dropdown-menu/master/preview_assets/v-dropdown-menu-preview.jpg)
 
  ✨ Demo:
    [https://v-dropdown-menu.now.sh](https://v-dropdown-menu.now.sh)
    
-   NPM:
+ 🟥 NPM:
    [https://www.npmjs.com/package/v-dropdown-menu](https://www.npmjs.com/package/v-dropdown-menu)
    
-   Github:
+  ⬛ Github:
    [https://github.com/RadKod/v-dropdown-menu](https://github.com/RadKod/v-dropdown-menu)
 
 #### Installation
