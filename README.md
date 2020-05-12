@@ -8,7 +8,7 @@
  ✨ Demo:
    [https://v-dropdown-menu.now.sh](https://v-dropdown-menu.now.sh)
    
- 🟥  NPM:
+ 🟥 NPM:
    [https://www.npmjs.com/package/v-dropdown-menu](https://www.npmjs.com/package/v-dropdown-menu)
    
   ⬛ Github:
