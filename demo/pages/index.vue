@@ -150,7 +150,14 @@ import CustomStyleDropdownMenu from '@/components/partials/CustomStyleDropdownMe
 export default {
   head() {
     return {
-      title: 'v-dropdown-menu | Customizable dropdown menu plugin for vuejs.'
+      title: 'v-dropdown-menu | Customizable dropdown menu plugin for vuejs.',
+      meta: [
+        {
+          hid: 'homeDescription',
+          name: 'description',
+          content: 'Customizable dropdown menu plugin for vuejs.'
+        }
+      ]
     }
   },
   components: {
