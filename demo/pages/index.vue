@@ -52,6 +52,72 @@
 
     // Section
     section.demo-menu-wrapper
+      p.demo-menu-desc dropup: true
+      dropdown-menu(:dropup="true")
+        button(slot="trigger") Open Dropdown
+        header(slot="header") Dropdown Header
+        ul(slot="body")
+          li(v-for="i in 6")
+            a(href="") Item {{i}}
+        footer(slot="footer") Dropdown Footer
+
+    // Section
+    section.demo-menu-wrapper
+      p.demo-menu-desc dropup: true, direction: right
+      dropdown-menu(:dropup="true" direction="right")
+        button(slot="trigger") Open Dropdown
+        header(slot="header") Dropdown Header
+        ul(slot="body")
+          li(v-for="i in 6")
+            a(href="") Item {{i}}
+        footer(slot="footer") Dropdown Footer
+
+    // Section
+    section.demo-menu-wrapper
+      p.demo-menu-desc dropup: true, direction: center
+      dropdown-menu(:dropup="true" direction="center")
+        button(slot="trigger") Open Dropdown
+        header(slot="header") Dropdown Header
+        ul(slot="body")
+          li(v-for="i in 6")
+            a(href="") Item {{i}}
+        footer(slot="footer") Dropdown Footer
+
+    // Section
+    section.demo-menu-wrapper
+      p.demo-menu-desc dropup: true, mode: hover
+      dropdown-menu(:dropup="true" mode="hover")
+        button(slot="trigger") Open Dropdown
+        header(slot="header") Dropdown Header
+        ul(slot="body")
+          li(v-for="i in 6")
+            a(href="") Item {{i}}
+        footer(slot="footer") Dropdown Footer
+
+    // Section
+    section.demo-menu-wrapper
+      p.demo-menu-desc dropup: true, direction: right, mode: hover
+      dropdown-menu(:dropup="true" direction="right" mode="hover")
+        button(slot="trigger") Open Dropdown
+        header(slot="header") Dropdown Header
+        ul(slot="body")
+          li(v-for="i in 6")
+            a(href="") Item {{i}}
+        footer(slot="footer") Dropdown Footer
+
+    // Section
+    section.demo-menu-wrapper
+      p.demo-menu-desc dropup: true, direction: center, mode: hover
+      dropdown-menu(:dropup="true" direction="center" mode="hover")
+        button(slot="trigger") Open Dropdown
+        header(slot="header") Dropdown Header
+        ul(slot="body")
+          li(v-for="i in 6")
+            a(href="") Item {{i}}
+        footer(slot="footer") Dropdown Footer
+
+    // Section
+    section.demo-menu-wrapper
       p.demo-menu-desc overlay: false
       dropdown-menu(:overlay="false")
         button(slot="trigger") Open Dropdown
@@ -128,7 +194,7 @@
           li
             a(href="") Item 2
           li
-            button.dropdown-closer Dropdown Closer (this contain class: .dropdown-closer)
+            button(dropdown-closer) Dropdown Closer (this contain attribute: dropdown-closer)
           li
             a(href="") Item 4
           li
@@ -183,12 +249,12 @@ export default {
     padding: 8px 14px;
   }
   .wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 20px;
-    grid-row-gap: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 80vw;
+    margin: 0 auto;
     section.demo-menu-wrapper {
+      flex: 25%;
       height: max-content;
       border: 1px solid #ddd;
       padding: 1em 2em 4em 2em;
@@ -201,10 +267,15 @@ export default {
         display: table;
       }
     }
+    @media (max-width: 992px) {
+      section.demo-menu-wrapper {
+        flex: 100%;
+      }
+    }
   }
   @media (max-width: 992px) {
     .wrapper {
-      grid-template-columns: repeat(1, 1fr);
+      max-width: unset;
     }
   }
 }
