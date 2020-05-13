@@ -65,9 +65,10 @@
 |--|--|--|--|--|
 |isOpen|Show or hide for dropdown|Boolean|`true` , `false` | false
 |mode|Open variant|String|`click` , `hover` | click
+| dropup |Open the menu upwards | Boolean | `true` , `false` | false
 |direction|Menu container direction|String|`left` , `right` , `center` | left
 |closeOnClickOutside|closes dropdown menu when click outside|Booelan|`true` , `false` | true
-|withDropdownCloser|  If there is an element in the menu with .dropdown-closer class, clicking on it closes the menu.|Boolean|`true` , `false` | false
+|withDropdownCloser|  If there is an element in the menu with **dropdown-closer** attribute, clicking on it closes the menu.|Boolean|`true` , `false` | false
 |menuZIndex|z-index of menu container|String| .| 994
 |overlay|background overlay of dropdown menu |Boolean| `true` , `false`| true
 |overlayBgColor|background-color of overlay |String| ex: `rgba(1, 35, 83, 0.8)`| rgba(0, 0, 0, 0.2)
@@ -80,6 +81,13 @@
 |header|header of menu container (optional)|
 |body|content of menu (optional)|
 |footer|footer of menu container (optional)|
+
+#### Events
+|  |
+|--|
+| `@opened="dispatchEvent"`|
+| `@closed="dispatchEvent"`|
+
 
 
 ## Author
