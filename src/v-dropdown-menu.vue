@@ -1,9 +1,9 @@
 <template lang="pug">
-.v-dropdown-menu(ref="dropdown")
+.v-dropdown-menu(ref="dropdown" :class="[modeClass, dropupClass, directionClass, {'v-dropdown-menu--active': isShow}]")
   // For Hover Mode
-  .v-dropdown-menu__trigger.v-dropdown-menu__trigger--mode-hover(ref="dropdownMenuTrigger" v-if="mode == 'hover'")
+  .v-dropdown-menu__trigger(v-if="mode === 'hover'" ref="dropdownMenuTrigger")
     slot(name='trigger')
-  .v-dropdown-menu__container.v-dropdown-menu__container--mode-hover(v-if="mode == 'hover'" :class="[dropdownMenuDirection]" :style="{'z-index': menuZIndex}")
+  .v-dropdown-menu__container(v-if="mode == 'hover'" :style="{'z-index': menuZIndex}")
     .v-dropdown-menu__header
       slot(name="header")
     .v-dropdown-menu__body
@@ -12,9 +12,9 @@
       slot(name="footer")
 
   // For Click Mode
-  .v-dropdown-menu__trigger.v-dropdown-menu__trigger--mode-click(v-if="mode == 'click'" ref="dropdownMenuTrigger" @mousedown.prevent="isShow = !isShow")
+  .v-dropdown-menu__trigger(v-if="mode == 'click'" ref="dropdownMenuTrigger" @mousedown.prevent="isShow = !isShow")
     slot(name='trigger')
-  .v-dropdown-menu__container.v-dropdown-menu__container--mode-click(v-if="mode == 'click'" :class="[{'v-dropdown-menu__container--active': isShow}, dropdownMenuDirection]" :style="{'z-index': menuZIndex}")
+  .v-dropdown-menu__container(v-if="mode == 'click'" :style="{'z-index': menuZIndex}")
     .v-dropdown-menu__header
       slot(name="header")
     .v-dropdown-menu__body
@@ -39,6 +39,11 @@ export default {
       type: String,
       required: false,
       default: 'click',
+    },
+    dropup: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
     direction: {
       type: String,
@@ -78,32 +83,43 @@ export default {
   },
   data() {
     return {
+      baseClassName: 'v-dropdown-menu',
       isShow: this.isOpen,
       withOverlay: this.overlay,
       menuDirection: this.direction,
     };
   },
   computed: {
-    dropdownMenuDirection() {
+    modeClass() {
+      return this.mode === 'click'
+        ? `${this.baseClassName}--mode-click`
+        : `${this.baseClassName}--mode-hover`;
+    },
+    dropupClass() {
+      return this.dropup ? `${this.baseClassName}--dropup` : null;
+    },
+    directionClass() {
       let menuDirection = null;
 
       if (this.menuDirection === 'left') {
-        menuDirection = 'v-dropdown-menu__container--direction-left';
+        menuDirection = `${this.baseClassName}--direction-left`;
       } else if (this.menuDirection === 'right') {
-        menuDirection = 'v-dropdown-menu__container--direction-right';
+        menuDirection = `${this.baseClassName}--direction-right`;
       } else {
-        menuDirection = 'v-dropdown-menu__container--direction-center';
+        menuDirection = `${this.baseClassName}--direction-center`;
       }
 
       return menuDirection;
     },
   },
   watch: {
-    isOpen(isOpen) {
-      if (isOpen) {
+    isShow(value) {
+      if (value) {
         this.isShow = true;
+        this.$emit('opened', this.$props);
       } else {
         this.isShow = false;
+        this.$emit('closed', this.$props);
       }
     },
   },
@@ -140,7 +156,7 @@ export default {
       if (this.withDropdownCloser) {
         const dropdown = this.$refs.dropdown;
 
-        dropdown.querySelectorAll('.dropdown-closer').forEach((element) => {
+        dropdown.querySelectorAll('[dropdown-closer]').forEach((element) => {
           element.addEventListener('click', () => {
             this.isShow = false;
           });
@@ -162,49 +178,91 @@ export default {
 </script>
 
 <style lang="scss">
+%active {
+  opacity: 1;
+  visibility: visible;
+}
 .v-dropdown-menu {
+  $this: &;
+  $hover-offset: 12px;
   position: relative;
   display: inline-block;
-  %active {
-    opacity: 1;
-    visibility: visible;
-    top: 35px;
-  }
   &__container {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    position: absolute;
+    top: 100%;
+    bottom: auto;
     min-width: 230px;
     max-width: 100%;
-    position: absolute;
-    top: 40px;
+    background-color: #fff;
+    border: 1px solid #ddd;
     opacity: 0;
     visibility: hidden;
     overflow: hidden;
-    &--active {
+  }
+  &--active & {
+    &__container {
       @extend %active;
     }
-    &--mode-hover {
+  }
+  &--dropup & {
+    &__container {
+      top: auto;
+      bottom: 100%;
+    }
+  }
+  &--direction-left & {
+    &__container {
+      left: 0;
+    }
+  }
+  &--direction-right & {
+    &__container {
+      right: 0;
+    }
+  }
+  &--direction-center & {
+    &__container {
+      left: 50%;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+  &--mode-hover & {
+    &__container {
+      transform: translateY($hover-offset);
       transition: 0.1s;
       transition-delay: 0.2s;
       &:hover {
         @extend %active;
+        transform: translateY(0);
       }
     }
-    &--direction-left {
-      left: 0;
-    }
-    &--direction-right {
-      right: 0;
-    }
-    &--direction-center {
-      left: 50%;
-      transform: translate(-50%, 0);
+    &__trigger:hover + #{$this}__container {
+      @extend %active;
+      transform: translateY(0);
     }
   }
-  &__trigger {
-    &--mode-hover:hover + .v-dropdown-menu__container {
-      &--mode-hover {
+  &--mode-hover {
+    &#{$this}--dropup {
+      #{$this}__container {
+        transform: translateY(-$hover-offset);
+      }
+      &#{$this}--direction-center {
+        #{$this}__container {
+          transform: translateX(-50%) translateY(-$hover-offset);
+        }
+      }
+    }
+
+    &#{$this}--direction-center {
+      #{$this}__container {
+        transform: translateX(-50%) translateY($hover-offset);
+        &:hover {
+          transform: translateX(-50%) translateY(0);
+        }
+      }
+      #{$this}__trigger:hover + #{$this}__container {
         @extend %active;
+        transform: translateX(-50%) translateY(0);
       }
     }
   }

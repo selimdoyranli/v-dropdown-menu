@@ -39,6 +39,11 @@ var script = {
       required: false,
       default: 'click'
     },
+    dropup: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     direction: {
       type: String,
       required: false,
@@ -77,32 +82,41 @@ var script = {
   },
   data: function data() {
     return {
+      baseClassName: 'v-dropdown-menu',
       isShow: this.isOpen,
       withOverlay: this.overlay,
       menuDirection: this.direction
     };
   },
   computed: {
-    dropdownMenuDirection: function dropdownMenuDirection() {
+    modeClass: function modeClass() {
+      return this.mode === 'click' ? "".concat(this.baseClassName, "--mode-click") : "".concat(this.baseClassName, "--mode-hover");
+    },
+    dropupClass: function dropupClass() {
+      return this.dropup ? "".concat(this.baseClassName, "--dropup") : null;
+    },
+    directionClass: function directionClass() {
       var menuDirection = null;
 
       if (this.menuDirection === 'left') {
-        menuDirection = 'v-dropdown-menu__container--direction-left';
+        menuDirection = "".concat(this.baseClassName, "--direction-left");
       } else if (this.menuDirection === 'right') {
-        menuDirection = 'v-dropdown-menu__container--direction-right';
+        menuDirection = "".concat(this.baseClassName, "--direction-right");
       } else {
-        menuDirection = 'v-dropdown-menu__container--direction-center';
+        menuDirection = "".concat(this.baseClassName, "--direction-center");
       }
 
       return menuDirection;
     }
   },
   watch: {
-    isOpen: function isOpen(_isOpen) {
-      if (_isOpen) {
+    isShow: function isShow(value) {
+      if (value) {
         this.isShow = true;
+        this.$emit('opened', this.$props);
       } else {
         this.isShow = false;
+        this.$emit('closed', this.$props);
       }
     }
   },
@@ -142,7 +156,7 @@ var script = {
 
       if (this.withDropdownCloser) {
         var dropdown = this.$refs.dropdown;
-        dropdown.querySelectorAll('.dropdown-closer').forEach(function (element) {
+        dropdown.querySelectorAll('[dropdown-closer]').forEach(function (element) {
           element.addEventListener('click', function () {
             _this2.isShow = false;
           });
@@ -248,13 +262,15 @@ var __vue_render__ = function __vue_render__() {
 
   return _c('div', {
     ref: "dropdown",
-    staticClass: "v-dropdown-menu"
-  }, [_vm.mode == 'hover' ? _c('div', {
+    staticClass: "v-dropdown-menu",
+    class: [_vm.modeClass, _vm.dropupClass, _vm.directionClass, {
+      'v-dropdown-menu--active': _vm.isShow
+    }]
+  }, [_vm.mode === 'hover' ? _c('div', {
     ref: "dropdownMenuTrigger",
-    staticClass: "v-dropdown-menu__trigger v-dropdown-menu__trigger--mode-hover"
+    staticClass: "v-dropdown-menu__trigger"
   }, [_vm._t("trigger")], 2) : _vm._e(), _vm.mode == 'hover' ? _c('div', {
-    staticClass: "v-dropdown-menu__container v-dropdown-menu__container--mode-hover",
-    class: [_vm.dropdownMenuDirection],
+    staticClass: "v-dropdown-menu__container",
     style: {
       'z-index': _vm.menuZIndex
     }
@@ -266,7 +282,7 @@ var __vue_render__ = function __vue_render__() {
     staticClass: "v-dropdown-menu__footer"
   }, [_vm._t("footer")], 2)]) : _vm._e(), _vm.mode == 'click' ? _c('div', {
     ref: "dropdownMenuTrigger",
-    staticClass: "v-dropdown-menu__trigger v-dropdown-menu__trigger--mode-click",
+    staticClass: "v-dropdown-menu__trigger",
     on: {
       "mousedown": function mousedown($event) {
         $event.preventDefault();
@@ -274,10 +290,7 @@ var __vue_render__ = function __vue_render__() {
       }
     }
   }, [_vm._t("trigger")], 2) : _vm._e(), _vm.mode == 'click' ? _c('div', {
-    staticClass: "v-dropdown-menu__container v-dropdown-menu__container--mode-click",
-    class: [{
-      'v-dropdown-menu__container--active': _vm.isShow
-    }, _vm.dropdownMenuDirection],
+    staticClass: "v-dropdown-menu__container",
     style: {
       'z-index': _vm.menuZIndex
     }

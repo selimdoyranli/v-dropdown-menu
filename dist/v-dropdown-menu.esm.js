@@ -39,6 +39,11 @@ var script = {
       required: false,
       default: 'click'
     },
+    dropup: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     direction: {
       type: String,
       required: false,
@@ -78,6 +83,7 @@ var script = {
 
   data() {
     return {
+      baseClassName: 'v-dropdown-menu',
       isShow: this.isOpen,
       withOverlay: this.overlay,
       menuDirection: this.direction
@@ -85,15 +91,23 @@ var script = {
   },
 
   computed: {
-    dropdownMenuDirection() {
+    modeClass() {
+      return this.mode === 'click' ? `${this.baseClassName}--mode-click` : `${this.baseClassName}--mode-hover`;
+    },
+
+    dropupClass() {
+      return this.dropup ? `${this.baseClassName}--dropup` : null;
+    },
+
+    directionClass() {
       let menuDirection = null;
 
       if (this.menuDirection === 'left') {
-        menuDirection = 'v-dropdown-menu__container--direction-left';
+        menuDirection = `${this.baseClassName}--direction-left`;
       } else if (this.menuDirection === 'right') {
-        menuDirection = 'v-dropdown-menu__container--direction-right';
+        menuDirection = `${this.baseClassName}--direction-right`;
       } else {
-        menuDirection = 'v-dropdown-menu__container--direction-center';
+        menuDirection = `${this.baseClassName}--direction-center`;
       }
 
       return menuDirection;
@@ -101,11 +115,13 @@ var script = {
 
   },
   watch: {
-    isOpen(isOpen) {
-      if (isOpen) {
+    isShow(value) {
+      if (value) {
         this.isShow = true;
+        this.$emit('opened', this.$props);
       } else {
         this.isShow = false;
+        this.$emit('closed', this.$props);
       }
     }
 
@@ -148,7 +164,7 @@ var script = {
     dropdownCloser() {
       if (this.withDropdownCloser) {
         const dropdown = this.$refs.dropdown;
-        dropdown.querySelectorAll('.dropdown-closer').forEach(element => {
+        dropdown.querySelectorAll('[dropdown-closer]').forEach(element => {
           element.addEventListener('click', () => {
             this.isShow = false;
           });
@@ -312,13 +328,15 @@ var __vue_render__ = function () {
 
   return _c('div', {
     ref: "dropdown",
-    staticClass: "v-dropdown-menu"
-  }, [_vm.mode == 'hover' ? _c('div', {
+    staticClass: "v-dropdown-menu",
+    class: [_vm.modeClass, _vm.dropupClass, _vm.directionClass, {
+      'v-dropdown-menu--active': _vm.isShow
+    }]
+  }, [_vm.mode === 'hover' ? _c('div', {
     ref: "dropdownMenuTrigger",
-    staticClass: "v-dropdown-menu__trigger v-dropdown-menu__trigger--mode-hover"
+    staticClass: "v-dropdown-menu__trigger"
   }, [_vm._t("trigger")], 2) : _vm._e(), _vm.mode == 'hover' ? _c('div', {
-    staticClass: "v-dropdown-menu__container v-dropdown-menu__container--mode-hover",
-    class: [_vm.dropdownMenuDirection],
+    staticClass: "v-dropdown-menu__container",
     style: {
       'z-index': _vm.menuZIndex
     }
@@ -330,7 +348,7 @@ var __vue_render__ = function () {
     staticClass: "v-dropdown-menu__footer"
   }, [_vm._t("footer")], 2)]) : _vm._e(), _vm.mode == 'click' ? _c('div', {
     ref: "dropdownMenuTrigger",
-    staticClass: "v-dropdown-menu__trigger v-dropdown-menu__trigger--mode-click",
+    staticClass: "v-dropdown-menu__trigger",
     on: {
       "mousedown": function ($event) {
         $event.preventDefault();
@@ -338,10 +356,7 @@ var __vue_render__ = function () {
       }
     }
   }, [_vm._t("trigger")], 2) : _vm._e(), _vm.mode == 'click' ? _c('div', {
-    staticClass: "v-dropdown-menu__container v-dropdown-menu__container--mode-click",
-    class: [{
-      'v-dropdown-menu__container--active': _vm.isShow
-    }, _vm.dropdownMenuDirection],
+    staticClass: "v-dropdown-menu__container",
     style: {
       'z-index': _vm.menuZIndex
     }
@@ -377,8 +392,8 @@ var __vue_staticRenderFns__ = [];
 
 const __vue_inject_styles__ = function (inject) {
   if (!inject) return;
-  inject("data-v-23af458d_0", {
-    source: ".v-dropdown-menu{position:relative;display:inline-block}.v-dropdown-menu .v-dropdown-menu__container--active,.v-dropdown-menu .v-dropdown-menu__container--mode-hover:hover,.v-dropdown-menu .v-dropdown-menu__trigger--mode-hover:hover+.v-dropdown-menu__container--mode-hover{opacity:1;visibility:visible;top:35px}.v-dropdown-menu__container{background-color:#fff;border:1px solid #ddd;min-width:230px;max-width:100%;position:absolute;top:40px;opacity:0;visibility:hidden;overflow:hidden}.v-dropdown-menu__container--mode-hover{transition:.1s;transition-delay:.2s}.v-dropdown-menu__container--direction-left{left:0}.v-dropdown-menu__container--direction-right{right:0}.v-dropdown-menu__container--direction-center{left:50%;transform:translate(-50%,0)}.v-dropdown-menu__overlay{position:fixed;top:0;left:0;width:100%;height:100vh}",
+  inject("data-v-5f6d14e0_0", {
+    source: ".v-dropdown-menu--active .v-dropdown-menu__container,.v-dropdown-menu--mode-hover .v-dropdown-menu__container:hover,.v-dropdown-menu--mode-hover .v-dropdown-menu__trigger:hover+.v-dropdown-menu__container,.v-dropdown-menu--mode-hover.v-dropdown-menu--direction-center .v-dropdown-menu__trigger:hover+.v-dropdown-menu__container{opacity:1;visibility:visible}.v-dropdown-menu{position:relative;display:inline-block}.v-dropdown-menu__container{position:absolute;top:100%;bottom:auto;min-width:230px;max-width:100%;background-color:#fff;border:1px solid #ddd;opacity:0;visibility:hidden;overflow:hidden}.v-dropdown-menu--dropup .v-dropdown-menu__container{top:auto;bottom:100%}.v-dropdown-menu--direction-left .v-dropdown-menu__container{left:0}.v-dropdown-menu--direction-right .v-dropdown-menu__container{right:0}.v-dropdown-menu--direction-center .v-dropdown-menu__container{left:50%;transform:translateX(-50%) translateY(0)}.v-dropdown-menu--mode-hover .v-dropdown-menu__container{transform:translateY(12px);transition:.1s;transition-delay:.2s}.v-dropdown-menu--mode-hover .v-dropdown-menu__container:hover{transform:translateY(0)}.v-dropdown-menu--mode-hover .v-dropdown-menu__trigger:hover+.v-dropdown-menu__container{transform:translateY(0)}.v-dropdown-menu--mode-hover.v-dropdown-menu--dropup .v-dropdown-menu__container{transform:translateY(-12px)}.v-dropdown-menu--mode-hover.v-dropdown-menu--dropup.v-dropdown-menu--direction-center .v-dropdown-menu__container{transform:translateX(-50%) translateY(-12px)}.v-dropdown-menu--mode-hover.v-dropdown-menu--direction-center .v-dropdown-menu__container{transform:translateX(-50%) translateY(12px)}.v-dropdown-menu--mode-hover.v-dropdown-menu--direction-center .v-dropdown-menu__container:hover{transform:translateX(-50%) translateY(0)}.v-dropdown-menu--mode-hover.v-dropdown-menu--direction-center .v-dropdown-menu__trigger:hover+.v-dropdown-menu__container{transform:translateX(-50%) translateY(0)}.v-dropdown-menu__overlay{position:fixed;top:0;left:0;width:100%;height:100vh}",
     map: undefined,
     media: undefined
   });
