@@ -5,7 +5,7 @@ section.demo-menu-wrapper
   small check console for event logs after clicking
   br
   br
-  dropdown-menu.custom-style(@opened="writeToConsoleForOpened" @closed="writeToConsoleForClosed")
+  dropdown-menu.custom-style(transition="zoom" @opened="writeToConsoleForOpened" @closed="writeToConsoleForClosed")
     button(slot="trigger") Open Dropdown
     header(slot="header") v-dropdown-menu
     ul(slot="body")
@@ -13,8 +13,8 @@ section.demo-menu-wrapper
         a(href="") Item {{i}}
     footer(slot="footer") @RadKod
   p ex. code
-  code(data-gist-id="7af19e39baa13947428b899f6adc0fd3")
-  code(data-gist-id="01ced89f534bc0214a4f98a42a81a978")
+  code(data-gist-id="0908dc999e2ea4f81d190b35fb70c8c9")
+  code(data-gist-id="e94a5c0a839dd031137b70d0922bd36b")
 </template>
 
 <script>
@@ -36,15 +36,15 @@ export default {
   &.custom-style & {
     &__container {
       border: 0;
-      box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);
       border-radius: 5px;
-      transform: translateY(0) scale(0.5);
+      box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);
+      transform: translateY(-50px);
       #{$this} {
         &__header {
-          background-color: #eee;
           display: flex;
           justify-content: center;
           padding: 5px;
+          background-color: #eee;
         }
         &__body {
           ul {
@@ -53,11 +53,11 @@ export default {
             li {
               list-style: none;
               a {
-                text-decoration: none;
-                font-size: 16px;
+                display: flex;
                 padding: 1rem;
                 color: #666;
-                display: flex;
+                font-size: 16px;
+                text-decoration: none;
                 &:hover {
                   background-color: #f2f2f2;
                 }
@@ -66,21 +66,30 @@ export default {
           }
         }
         &__footer {
-          background-color: #012353;
-          color: #fff;
           display: flex;
           justify-content: center;
           padding: 5px;
+          color: #fff;
+          background-color: #012353;
         }
       }
     }
   }
   &.custom-style {
-    &#{$this}--active {
-      #{$this}__container {
-        transform: translateY(-50px) scale(1);
-        transform-origin: top center;
-        transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    // Custom Transition - Zoom Effect
+    .zoom-enter-active {
+      transition: all 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+    .zoom-enter,
+    .zoom-leave-to {
+      transform: translateY(50px) scale(0.5);
+      transform-origin: center top;
+      opacity: 0;
+    }
+    &#{$this}--mode-hover {
+      .zoom-enter,
+      .zoom-leave-to {
+        transition-delay: 0.4s;
       }
     }
   }

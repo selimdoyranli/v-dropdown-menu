@@ -26,6 +26,11 @@
 //
 //
 //
+//
+//
+//
+//
+//
 var script = {
   name: 'DropdownMenu',
   props: {
@@ -59,7 +64,7 @@ var script = {
       required: false,
       default: false
     },
-    menuZIndex: {
+    containerZIndex: {
       type: String,
       required: false,
       default: '994'
@@ -78,45 +83,63 @@ var script = {
       type: String,
       required: false,
       default: '992'
+    },
+    transition: {
+      type: String,
+      required: false,
+      default: 'default'
     }
   },
   data: function data() {
     return {
       baseClassName: 'v-dropdown-menu',
-      isShow: this.isOpen,
-      withOverlay: this.overlay,
-      menuDirection: this.direction
+      menu: {
+        isOpen: this.isOpen,
+        mode: this.mode,
+        dropup: this.dropup,
+        direction: this.direction,
+        closeOnClickOutside: this.closeOnClickOutside,
+        withDropdownCloser: this.withDropdownCloser,
+        containerZIndex: this.containerZIndex,
+        overlay: this.overlay,
+        overlayBgColor: this.overlayBgColor,
+        overlayZIndex: this.overlayZIndex,
+        transition: this.transition
+      }
     };
   },
   computed: {
+    activeClass: function activeClass() {
+      return this.menu.isOpen ? "".concat(this.baseClassName, "--active") : null;
+    },
     modeClass: function modeClass() {
-      return this.mode === 'click' ? "".concat(this.baseClassName, "--mode-click") : "".concat(this.baseClassName, "--mode-hover");
+      return this.menu.mode === 'click' ? "".concat(this.baseClassName, "--mode-click") : "".concat(this.baseClassName, "--mode-hover");
     },
     dropupClass: function dropupClass() {
-      return this.dropup ? "".concat(this.baseClassName, "--dropup") : null;
+      return this.menu.dropup ? "".concat(this.baseClassName, "--dropup") : null;
     },
     directionClass: function directionClass() {
       var menuDirection = null;
 
-      if (this.menuDirection === 'left') {
+      if (this.menu.direction === 'left') {
         menuDirection = "".concat(this.baseClassName, "--direction-left");
-      } else if (this.menuDirection === 'right') {
-        menuDirection = "".concat(this.baseClassName, "--direction-right");
-      } else {
+      } else if (this.menu.direction === 'center') {
         menuDirection = "".concat(this.baseClassName, "--direction-center");
+      } else {
+        menuDirection = "".concat(this.baseClassName, "--direction-right");
       }
 
       return menuDirection;
     }
   },
   watch: {
-    isShow: function isShow(value) {
-      if (value) {
-        this.isShow = true;
-        this.$emit('opened', this.$props);
-      } else {
-        this.isShow = false;
-        this.$emit('closed', this.$props);
+    'menu.isOpen': function menuIsOpen(value) {
+      if (this.menu.mode === 'click') {
+        if (value) {
+          this.$emit('opened', this.$props);
+        } else {
+          this.$emit('closed', this.$props);
+        }
       }
     }
   },
@@ -125,7 +148,7 @@ var script = {
 
     this.dropdownCloser();
     this.$nextTick(function () {
-      if (_this.closeOnClickOutside) {
+      if (_this.menu.closeOnClickOutside) {
         _this.registerCloseDropdownOnClickOutside();
       }
     });
@@ -136,29 +159,35 @@ var script = {
     this.destroyCloseDropdownOnPopState();
   },
   methods: {
+    show: function show() {
+      this.menu.isOpen = true;
+    },
+    hide: function hide() {
+      this.menu.isOpen = false;
+    },
     registerCloseDropdownOnClickOutside: function registerCloseDropdownOnClickOutside() {
       window.addEventListener('click', this.closeDropdownOnClickOutside);
     },
     closeDropdownOnClickOutside: function closeDropdownOnClickOutside(e) {
-      if (this.isShow) {
+      if (this.menu.isOpen) {
         if (!this.$refs.dropdown.contains(e.target)) {
-          this.isShow = false;
+          this.menu.isOpen = false;
         }
       }
     },
     destroyCloseDropdownOnClickOutside: function destroyCloseDropdownOnClickOutside() {
-      if (this.closeOnClickOutside) {
+      if (this.menu.closeOnClickOutside) {
         window.removeEventListener('click', this.closeDropdownOnClickOutside);
       }
     },
     dropdownCloser: function dropdownCloser() {
       var _this2 = this;
 
-      if (this.withDropdownCloser) {
+      if (this.menu.withDropdownCloser) {
         var dropdown = this.$refs.dropdown;
         dropdown.querySelectorAll('[dropdown-closer]').forEach(function (element) {
           element.addEventListener('click', function () {
-            _this2.isShow = false;
+            _this2.menu.isOpen = false;
           });
         });
       }
@@ -167,8 +196,8 @@ var script = {
       var _this3 = this;
 
       window.addEventListener('popstate', function () {
-        if (_this3.isShow) {
-          _this3.isShow = false;
+        if (_this3.menu.isOpen) {
+          _this3.menu.isOpen = false;
         }
       });
     },
@@ -263,62 +292,101 @@ var __vue_render__ = function __vue_render__() {
   return _c('div', {
     ref: "dropdown",
     staticClass: "v-dropdown-menu",
-    class: [_vm.modeClass, _vm.dropupClass, _vm.directionClass, {
-      'v-dropdown-menu--active': _vm.isShow
-    }]
-  }, [_vm.mode === 'hover' ? _c('div', {
-    ref: "dropdownMenuTrigger",
-    staticClass: "v-dropdown-menu__trigger"
-  }, [_vm._t("trigger")], 2) : _vm._e(), _vm.mode == 'hover' ? _c('div', {
-    staticClass: "v-dropdown-menu__container",
-    style: {
-      'z-index': _vm.menuZIndex
-    }
-  }, [_c('div', {
-    staticClass: "v-dropdown-menu__header"
-  }, [_vm._t("header")], 2), _c('div', {
-    staticClass: "v-dropdown-menu__body"
-  }, [_vm._t("body")], 2), _c('div', {
-    staticClass: "v-dropdown-menu__footer"
-  }, [_vm._t("footer")], 2)]) : _vm._e(), _vm.mode == 'click' ? _c('div', {
-    ref: "dropdownMenuTrigger",
+    class: [_vm.activeClass, _vm.modeClass, _vm.dropupClass, _vm.directionClass]
+  }, [_vm.menu.mode === 'click' ? [_c('div', {
+    ref: "trigger",
     staticClass: "v-dropdown-menu__trigger",
     on: {
-      "mousedown": function mousedown($event) {
+      "click": function click($event) {
         $event.preventDefault();
-        _vm.isShow = !_vm.isShow;
+        _vm.menu.isOpen = !_vm.menu.isOpen;
       }
     }
-  }, [_vm._t("trigger")], 2) : _vm._e(), _vm.mode == 'click' ? _c('div', {
-    staticClass: "v-dropdown-menu__container",
-    style: {
-      'z-index': _vm.menuZIndex
+  }, [_vm._t("trigger")], 2), _c('transition', {
+    attrs: {
+      "name": _vm.menu.transition
     }
   }, [_c('div', {
-    staticClass: "v-dropdown-menu__header"
-  }, [_vm._t("header")], 2), _c('div', {
-    staticClass: "v-dropdown-menu__body"
-  }, [_vm._t("body")], 2), _c('div', {
-    staticClass: "v-dropdown-menu__footer"
-  }, [_vm._t("footer")], 2)]) : _vm._e(), _vm.withOverlay && _vm.closeOnClickOutside ? _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.isShow,
-      expression: "isShow"
+      value: _vm.menu.isOpen,
+      expression: "menu.isOpen"
+    }],
+    staticClass: "v-dropdown-menu__container",
+    style: {
+      'z-index': _vm.menu.containerZIndex
+    }
+  }, [_c('div', {
+    staticClass: "v-dropdown-menu__header"
+  }, [_vm._t("header")], 2), _c('div', {
+    staticClass: "v-dropdown-menu__body"
+  }, [_vm._t("body")], 2), _c('div', {
+    staticClass: "v-dropdown-menu__footer"
+  }, [_vm._t("footer")], 2)])])] : [_c('div', {
+    ref: "trigger",
+    staticClass: "v-dropdown-menu__trigger",
+    on: {
+      "mouseover": function mouseover($event) {
+        $event.preventDefault();
+        return _vm.show($event);
+      },
+      "mouseleave": function mouseleave($event) {
+        $event.preventDefault();
+        return _vm.hide($event);
+      }
+    }
+  }, [_vm._t("trigger")], 2), _c('transition', {
+    attrs: {
+      "name": _vm.menu.transition
+    }
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.menu.isOpen,
+      expression: "menu.isOpen"
+    }],
+    staticClass: "v-dropdown-menu__container",
+    style: {
+      'z-index': _vm.menu.containerZIndex
+    },
+    on: {
+      "mouseover": function mouseover($event) {
+        $event.preventDefault();
+        return _vm.show($event);
+      },
+      "mouseleave": function mouseleave($event) {
+        $event.preventDefault();
+        return _vm.hide($event);
+      }
+    }
+  }, [_c('div', {
+    staticClass: "v-dropdown-menu__header"
+  }, [_vm._t("header")], 2), _c('div', {
+    staticClass: "v-dropdown-menu__body"
+  }, [_vm._t("body")], 2), _c('div', {
+    staticClass: "v-dropdown-menu__footer"
+  }, [_vm._t("footer")], 2)])])], _vm.menu.overlay && _vm.menu.closeOnClickOutside && _vm.menu.mode === 'click' ? _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.menu.isOpen,
+      expression: "menu.isOpen"
     }],
     ref: "overlay",
     staticClass: "v-dropdown-menu__overlay",
     style: {
-      'background-color': _vm.overlayBgColor,
-      'z-index': _vm.overlayZIndex
+      'background-color': _vm.menu.overlayBgColor,
+      'z-index': _vm.menu.overlayZIndex
     },
     on: {
       "mousedown": function mousedown($event) {
-        _vm.isShow = false;
+        $event.preventDefault();
+        return _vm.hide($event);
       }
     }
-  }) : _vm._e()]);
+  }) : _vm._e()], 2);
 };
 
 var __vue_staticRenderFns__ = [];
