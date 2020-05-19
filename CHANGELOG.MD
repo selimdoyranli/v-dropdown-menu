@@ -1,4 +1,11 @@
 # Changelog
+## 1.3.0
+
+ - Transition feature
+ - Css hover > vue modifier hover
+ - Renames (menuZIndex prop name > containerZIndex)
+ - Clean code
+
 ## 1.2.0
 
  - Dropup feature
