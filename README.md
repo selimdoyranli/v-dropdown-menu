@@ -15,19 +15,19 @@
    [https://github.com/RadKod/v-dropdown-menu](https://github.com/RadKod/v-dropdown-menu)
 
 #### Installation
-
-    npm install v-dropdown-menu --save
-
+```bash
+$ npm install v-dropdown-menu --save
+```
 #### Global Register
-
+```js
     import Vue from 'vue'
     import DropdownMenu from 'v-dropdown-menu'
     import 'v-dropdown-menu/dist/v-dropdown-menu.css' // Base style, required.
     
     Vue.use(DropdownMenu)  
- 
+ ```
 #### Local Register
-
+```js
     import DropdownMenu from 'v-dropdown-menu'
     import 'v-dropdown-menu/dist/v-dropdown-menu.css' // Base style, required.
     
@@ -36,9 +36,9 @@
         DropdownMenu
       }
     }
-
+```
 #### Via CDN
-
+```js
     <script src="https://unpkg.com/v-dropdown-menu"></script>
     <script>
 	  new  Vue({
@@ -46,11 +46,11 @@
 	  });
 	  Vue.use(DropdownMenu);
     </script>
-
+```
  
 
 #### Usage
-
+```html
     <dropdown-menu>
       <button slot="trigger">Open Dropdown</button>
       <div slot="header">Dropdown Header</div>
@@ -59,7 +59,7 @@
       </ul>
       <div slot="footer">Dropdown Footer</div>
     </dropdown-menu>
-
+```
 #### Props
 | Name | Description | Type| Options| Default |
 |--|--|--|--|--|
