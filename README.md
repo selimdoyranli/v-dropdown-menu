@@ -72,7 +72,7 @@ $ npm install v-dropdown-menu --save
 |containerZIndex|z-index of menu container|String| .| 994
 |overlay|background overlay of dropdown menu (only for click mode) |Boolean| `true` , `false`| true
 |overlayBgColor|background-color of overlay |String| ex: `rgba(1, 35, 83, 0.8)`| rgba(0, 0, 0, 0.2)
-|overlayZIndex|z-index of overlay|String| .| 992
+|overlayZIndex|z-index of overlay|String| numbers between 0-2147483647 ex: `20`| 992
 |transition|custom vue transition for menu|String| .| default
 
 #### Slots
