@@ -1,7 +1,7 @@
 const pkg = require('./package')
 
 module.exports = {
-  target: 'server',
+  target: 'static',
 
   /*
    ** Headers of the page
