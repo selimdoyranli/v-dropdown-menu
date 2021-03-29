@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import DropdownMenu from '../../dist/v-dropdown-menu'
-import '../../dist/v-dropdown-menu.css'
+import DropdownMenu from '../../src/entry.js'
 
 Vue.use(DropdownMenu)

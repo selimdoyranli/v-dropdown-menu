@@ -136,6 +136,19 @@ export default {
     }
   },
   watch: {
+    isOpen(value) {
+      if (this.menu.mode === 'click') {
+        if (value) {
+          setTimeout(() => {
+            this.show()
+          }, 1); // wait, bypass for closeOnClickOutside
+        } else {
+          setTimeout(() => {
+            this.hide()
+          }, 1); // wait, bypass for closeOnClickOutside
+        }
+      }
+    },
     'menu.isOpen'(value) {
       if (this.menu.mode === 'click') {
         if (value) {
