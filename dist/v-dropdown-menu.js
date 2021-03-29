@@ -133,6 +133,21 @@ var script = {
     }
   },
   watch: {
+    isOpen: function isOpen(value) {
+      var _this = this;
+
+      if (this.menu.mode === 'click') {
+        if (value) {
+          setTimeout(function () {
+            _this.show();
+          }, 1); // wait, bypass for closeOnClickOutside
+        } else {
+          setTimeout(function () {
+            _this.hide();
+          }, 1); // wait, bypass for closeOnClickOutside
+        }
+      }
+    },
     'menu.isOpen': function menuIsOpen(value) {
       if (this.menu.mode === 'click') {
         if (value) {
@@ -144,12 +159,12 @@ var script = {
     }
   },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     this.dropdownCloser();
     this.$nextTick(function () {
-      if (_this.menu.closeOnClickOutside) {
-        _this.registerCloseDropdownOnClickOutside();
+      if (_this2.menu.closeOnClickOutside) {
+        _this2.registerCloseDropdownOnClickOutside();
       }
     });
     this.closeDropdownOnPopState();
@@ -181,23 +196,23 @@ var script = {
       }
     },
     dropdownCloser: function dropdownCloser() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.menu.withDropdownCloser) {
         var dropdown = this.$refs.dropdown;
         dropdown.querySelectorAll('[dropdown-closer]').forEach(function (element) {
           element.addEventListener('click', function () {
-            _this2.menu.isOpen = false;
+            _this3.menu.isOpen = false;
           });
         });
       }
     },
     closeDropdownOnPopState: function closeDropdownOnPopState() {
-      var _this3 = this;
+      var _this4 = this;
 
       window.addEventListener('popstate', function () {
-        if (_this3.menu.isOpen) {
-          _this3.menu.isOpen = false;
+        if (_this4.menu.isOpen) {
+          _this4.menu.isOpen = false;
         }
       });
     },
@@ -408,7 +423,7 @@ var __vue_is_functional_template__ = false;
 
 /* style inject shadow dom */
 
-var __vue_component__ = normalizeComponent({
+var __vue_component__ = /*#__PURE__*/normalizeComponent({
   render: __vue_render__,
   staticRenderFns: __vue_staticRenderFns__
 }, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);// Import vue component

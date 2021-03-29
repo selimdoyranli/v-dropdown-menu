@@ -139,6 +139,20 @@ var script = {
 
   },
   watch: {
+    isOpen(value) {
+      if (this.menu.mode === 'click') {
+        if (value) {
+          setTimeout(() => {
+            this.show();
+          }, 1); // wait, bypass for closeOnClickOutside
+        } else {
+          setTimeout(() => {
+            this.hide();
+          }, 1); // wait, bypass for closeOnClickOutside
+        }
+      }
+    },
+
     'menu.isOpen'(value) {
       if (this.menu.mode === 'click') {
         if (value) {
@@ -463,7 +477,7 @@ var __vue_staticRenderFns__ = [];
 
 const __vue_inject_styles__ = function (inject) {
   if (!inject) return;
-  inject("data-v-21e78dfd_0", {
+  inject("data-v-0eab5251_0", {
     source: ".v-dropdown-menu{position:relative;display:inline-block}.v-dropdown-menu__trigger{position:relative}.v-dropdown-menu__container{position:absolute;top:100%;bottom:auto;min-width:230px;max-width:100%;overflow:hidden;background-color:#fff;border:1px solid #ddd}.v-dropdown-menu--dropup .v-dropdown-menu__container{top:auto;bottom:100%}.v-dropdown-menu--direction-left .v-dropdown-menu__container{left:0}.v-dropdown-menu--direction-center .v-dropdown-menu__container{left:50%;transform:translateX(-50%) translateY(0)}.v-dropdown-menu--direction-right .v-dropdown-menu__container{right:0}.v-dropdown-menu__overlay{position:fixed;top:0;left:0;width:100%;height:100vh}.v-dropdown-menu .default-enter-active{transition:all .2s ease}.v-dropdown-menu .default-leave-active{transition:all .2s cubic-bezier(1,.5,.8,1)}.v-dropdown-menu .default-enter,.v-dropdown-menu .default-leave-to{transform:translateY(12px);opacity:0}.v-dropdown-menu--mode-hover .default-enter,.v-dropdown-menu--mode-hover .default-leave-active{transition-delay:.4s}.v-dropdown-menu--dropup .default-enter,.v-dropdown-menu--dropup .default-leave-to{transform:translateY(-12px)}.v-dropdown-menu--dropup.v-dropdown-menu--direction-center .default-enter,.v-dropdown-menu--dropup.v-dropdown-menu--direction-center .default-leave-to{transform:translateX(-50%) translateY(-12px)}.v-dropdown-menu--direction-center .default-enter,.v-dropdown-menu--direction-center .default-leave-to{transform:translateX(-50%) translateY(12px)}",
     map: undefined,
     media: undefined
@@ -483,7 +497,7 @@ const __vue_is_functional_template__ = false;
 
 /* style inject shadow dom */
 
-const __vue_component__ = normalizeComponent({
+const __vue_component__ = /*#__PURE__*/normalizeComponent({
   render: __vue_render__,
   staticRenderFns: __vue_staticRenderFns__
 }, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, createInjector, undefined, undefined);
