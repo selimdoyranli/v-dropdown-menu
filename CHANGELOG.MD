@@ -1,4 +1,8 @@
 # Changelog
+
+## 1.3.2
+
+  - Added isOpen prop watcher. You can use external trigger.
 ## 1.3.1
 
   - Doc updated

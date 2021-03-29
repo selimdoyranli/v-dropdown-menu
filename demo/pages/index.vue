@@ -184,6 +184,23 @@
 
     // Section
     section.demo-menu-wrapper
+      p.demo-menu-desc isOpen toggle from another element
+      button(@click="isOpenMyDropdown = !isOpenMyDropdown") Open Dropdown (Hey i'm external trigger)
+      br
+      br
+      dropdown-menu(:isOpen="isOpenMyDropdown" @closed="isOpenMyDropdown = false")
+        button(slot="trigger") Open Dropdown
+        header(slot="header") Dropdown Header
+        ul(slot="body")
+          li(v-for="i in 6")
+            a(href="") Item {{i}}
+        footer(slot="footer") Dropdown Footer
+      br
+      br
+      code(data-gist-id="e2c6803782a73b39a9b5759a7851a9d7")
+
+    // Section
+    section.demo-menu-wrapper
       p.demo-menu-desc withDropdownCloser: true
       dropdown-menu(:withDropdownCloser="true")
         button(slot="trigger") Open Dropdown
@@ -214,6 +231,11 @@ import MetaData from '@/components/partials/MetaData'
 import CustomStyleDropdownMenu from '@/components/partials/CustomStyleDropdownMenu'
 
 export default {
+  data() {
+    return {
+      isOpenMyDropdown: false
+    }
+  },
   head() {
     return {
       title: 'v-dropdown-menu | Customizable dropdown menu plugin for vuejs.',
