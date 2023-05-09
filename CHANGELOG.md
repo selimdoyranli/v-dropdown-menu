@@ -1,5 +1,27 @@
 # Changelog
 
+## v2.0.2
+
+[compare changes](https://github.com/RadKod/v-dropdown-menu/compare/v2.0.1...v2.0.2)
+
+
+### 📖 Documentation
+
+  - Update docs ([2976033](https://github.com/RadKod/v-dropdown-menu/commit/2976033))
+
+### 📦 Build
+
+  - Update npm scripts ([a9a69a2](https://github.com/RadKod/v-dropdown-menu/commit/a9a69a2))
+
+### 🏡 Chore
+
+  - Changelog rename ([ac3ac3b](https://github.com/RadKod/v-dropdown-menu/commit/ac3ac3b))
+  - Changelog rename ([2a925ea](https://github.com/RadKod/v-dropdown-menu/commit/2a925ea))
+
+### ❤️  Contributors
+
+- Selimdoyranli ([@selimdoyranli](http://github.com/selimdoyranli))
+
 ## v2.0.1
 
 [compare changes](https://github.com/RadKod/v-dropdown-menu/compare/e3c1f82...v2.0.1)
