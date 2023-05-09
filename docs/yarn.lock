@@ -6647,6 +6647,11 @@ uvu@^0.5.0:
     kleur "^4.0.3"
     sade "^1.7.3"
 
+v-dropdown-menu@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/v-dropdown-menu/-/v-dropdown-menu-2.0.1.tgz#89763104fad89d60e535850e041af78f069cbc7f"
+  integrity sha512-AoCL3G63zK6oIs0AS6e9C2rguNb6PZb9t1GmzvWYQ1cw4uHf7xTNzRMQpu23H2rlCErV2rXbhdsYkGtHp+Eljg==
+
 vfile-location@^4.0.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/vfile-location/-/vfile-location-4.1.0.tgz#69df82fb9ef0a38d0d02b90dd84620e120050dd0"

@@ -2,7 +2,7 @@ export default defineAppConfig({
   docus: {
     title: 'v-dropdown-menu',
     description: 'Customizable dropdown menu for vue 🟩🔽',
-    image: '/media/preview.png',
+    image: '/media/preview.jpg',
     socials: {
       twitter: 'startupekibi',
       github: 'RadKod/v-dropdown-menu'
