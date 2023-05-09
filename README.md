@@ -1,65 +1,167 @@
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![changelog][changelog-src]][changelog-href]
+[![License][license-src]][license-href]
 
-[![v-dropdown-menu](https://raw.githubusercontent.com/RadKod/v-dropdown-menu/master/preview_assets/v-dropdown-menu-logo.png)](https://www.npmjs.com/package/v-dropdown-menu)
+<p align="center">
+  <a href="https://v-dropdown-menu.vercel.app" target="_blank"> 
+    <img src='/meta/logo.png' width="256" />
+  </a>
+</p>
 
-> Customizable dropdown menu plugin for vuejs. SSR supported.
+<p align="center">
+<b>v-dropdown-menu</b>
+</p>
 
-![v-dropdown-menu](https://raw.githubusercontent.com/RadKod/v-dropdown-menu/master/preview_assets/v-dropdown-menu-preview.jpg)
+<p align="center">
+Customizable dropdown menu for vue 🟩🔽
+</p>
 
- ✨ Demo:
-   [https://v-dropdown-menu.now.sh](https://v-dropdown-menu.now.sh)
-   
- 🟥 NPM:
-   [https://www.npmjs.com/package/v-dropdown-menu](https://www.npmjs.com/package/v-dropdown-menu)
-   
-  ⬛ Github:
-   [https://github.com/RadKod/v-dropdown-menu](https://github.com/RadKod/v-dropdown-menu)
+<p align="center">
+  <a href="https://v-dropdown-menu.vercel.app" target="_blank"> 
+    <img src='/meta/preview.jpg' width="256" />
+  </a>
+</p>
 
-#### Installation
-```bash
-$ npm install v-dropdown-menu --save
+<p align="center">
+  <p align="center"><sub>Created by<sub></p>
+    <p align="center">
+	    <a href="https://radkod.com" target="_blank">
+			<img src='/meta/radkod_signature.png' width="128" />
+		</a>
+    </p>
+</p>
+
+<p align="center">
+<a href="https://github.com/RadKod/v-dropdown-menu" target="__blank"><img alt="GitHub stars" src="https://img.shields.io/github/stars/RadKod/v-dropdown-menu?style=social"></a>
+</p>
+
+<p align="center">
+  <a href="https://v-dropdown-menu.vercel.app" target="_blank">Website</a>
+</p>
+
+<div align="center">
+<sub>Buy me a coffee - <a href="https://www.buymeacoffee.com/RadKod">Sponsorship 💖</a></sub><br>
+</div>
+
+## Features
+- ⚡️ Lightweight
+- 🎨 Interactive
+- 🛠️ Customizable
+- 👶🏻 Easy implementation
+- 📦 Vue2 & Vue3 support
+- 💉 SSR compatible
+
+## Getting Started
+
+### Try it Online ⚡️
+
+[DEMO](https://v-dropdown-menu.vercel.app/demo)
+
+
+## Installation
+
+```js
+yarn add v-dropdown-menu  # or npm i v-dropdown-menu
 ```
+
+### Vue3
+
 #### Global Register
+
 ```js
-    import Vue from 'vue'
-    import DropdownMenu from 'v-dropdown-menu'
-    import 'v-dropdown-menu/dist/v-dropdown-menu.css' // Base style, required.
-    
-    Vue.use(DropdownMenu)  
- ```
+import { createApp } from 'vue'
+import App from './App.vue'
+import DropdownMenu from 'v-dropdown-menu'
+
+const app = createApp(App)
+
+app.use(DropdownMenu)
+app.mount('#app')
+```
+
 #### Local Register
-```js
-    import DropdownMenu from 'v-dropdown-menu'
-    import 'v-dropdown-menu/dist/v-dropdown-menu.css' // Base style, required.
-    
-    export default {
-      components: {
-        DropdownMenu
-      }
-    }
+```html
+<script setup>
+import DropdownMenu from 'v-dropdown-menu'
+import 'v-dropdown-menu/dist/vue3/v-dropdown-menu.css'
+</script>
 ```
 #### Via CDN
 ```js
-    <script src="https://unpkg.com/v-dropdown-menu"></script>
-    <script>
-	  new  Vue({
-	    el: "#app"
-	  });
-	  Vue.use(DropdownMenu);
-    </script>
-```
- 
+<script src="https://unpkg.com/vue@3"></script>
+<script src="https://unpkg.com/v-dropdown-menu"></script>
+<link rel="stylesheet" href="https://unpkg.com/v-dropdown-menu/dist/vue3/v-dropdown-menu.css">
 
-#### Usage
-```html
-    <dropdown-menu>
-      <button slot="trigger">Open Dropdown</button>
-      <div slot="header">Dropdown Header</div>
-      <ul slot="body">
-        <li v-for="i in 6" :key="i"><a href="">Item {{i}}</a></li>
-      </ul>
-      <div slot="footer">Dropdown Footer</div>
-    </dropdown-menu>
+<script>
+  const app = Vue.createApp({})
+    
+  app.use(DropdownMenu)
+  app.mount('#app')
+</script>
 ```
+
+### Vue2
+
+#### Global Register
+
+```js
+import Vue from "vue"
+import DropdownMenu from "v-dropdown-menu/vue2"
+
+Vue.use(DropdownMenu);
+```
+
+#### Local Register
+```js
+import DropdownMenu from "v-dropdown-menu/vue2"
+import "v-dropdown-menu/dist/vue2/v-dropdown-menu.css"
+
+export default {
+  components: {
+    DropdownMenu
+  }
+}
+```
+#### Via CDN
+```js
+<script src="https://unpkg.com/vue@2"></script>
+<script src="https://unpkg.com/v-dropdown-menu/vue2"></script>
+<link rel="stylesheet" href="https://unpkg.com/v-dropdown-menu/dist/vue2/v-dropdown-menu.css">
+
+<script>
+new  Vue({
+  el: "#app"
+});
+
+Vue.use(DropdownMenu);
+</script>
+```
+&nbsp;
+
+### Usage
+
+```html
+<dropdown-menu>
+  <template #trigger>
+    <button>Open Dropdown</button>
+  </template>
+  
+  <template #header> Dropdown Header </template>
+  
+  <template #body>
+    <ul>
+      <li v-for="i in 6" :key="i">
+        <a href="">Item {{ i }}</a>
+      </li>
+    </ul>
+  </template>
+  
+  <template #footer> Dropdown Footer </template>
+</dropdown-menu>
+
+```
+
 #### Props
 | Name | Description | Type| Options| Default |
 |--|--|--|--|--|
@@ -90,18 +192,100 @@ $ npm install v-dropdown-menu --save
 | `@closed="dispatchEvent"`|
 
 
+---
 
-## Author
+## Development
 
-👤 **selimdoyranli**
+### Vue3
 
-* Website: [@selimdoyranli](https://selimdoyranli.com)
-* Github: [@selimdoyranli](https://github.com/selimdoyranli)
-* LinkedIn: [@selimdoyranli](https://linkedin.com/in/selimdoyranli)
-* Team: [@RadKod](https://radkod.com)
+```bash
+yarn build:vue3 # build for vue3
+```
 
-___
+```bash
+# Serve
 
-CREATED BY
+cd dev/vue3
 
- [![RadKod](https://i.ibb.co/q5G6N0n/radkod-mail-imza.png)](https://www.radkod.com)
+yarn install
+yarn serve
+```
+
+### Vue2
+
+```bash
+yarn build:vue2 # build for vue2
+```
+
+```bash
+# Serve
+
+cd dev/vue2
+
+yarn install
+yarn serve
+```
+
+### Vue 2&3
+
+```bash
+yarn build # build for vue2 and vue3
+```
+
+#### Linter
+
+```bash
+# run eslint
+yarn lint:eslint
+
+# run eslint fix
+yarn lint:eslint:fix
+
+# run stylelint
+yarn lint:stylelint
+
+# run stylelint fix
+yarn lint:stylelint:fix
+
+# run prettier
+yarn prettier
+
+```
+
+## Sponsorship
+
+You can sponsor us for the continuity of our projects:
+
+<p align="left">
+  <a href="https://buymeacoffee.com/RadKod">
+    <img src='https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png'/>
+  </a>
+</p>
+
+## License
+
+[MIT License](./LICENSE)
+
+Copyright (c) RadKod <info@radkod.com>
+
+<p align="left">
+  <a href="https://radkod.com">
+    <img src='/meta/radkod_signature.png'/>
+  </a>
+</p>
+
+<!-- Badges -->
+[npm-version-src]: https://img.shields.io/npm/v/v-dropdown-menu/latest.svg
+[npm-version-href]: https://npmjs.com/package/v-dropdown-menu
+
+[npm-downloads-src]: https://img.shields.io/npm/dt/v-dropdown-menu.svg
+[npm-downloads-href]: https://npmjs.com/package/v-dropdown-menu
+
+[codecov-src]: https://img.shields.io/codecov/c/github/RadKod/v-dropdown-menu.svg
+[codecov-href]: https://codecov.io/gh/RadKod/v-dropdown-menu
+
+[changelog-src]: https://img.shields.io/static/v1?label=%F0%9F%93%96&message=Release%20Notes%20|%20CHANGELOG&color=blue
+[changelog-href]: ./CHANGELOG.md
+
+[license-src]: https://img.shields.io/badge/License-MIT-blue.svg
+[license-href]: https://npmjs.com/package/v-dropdown-menu/LICENSE
