@@ -1,4 +1,3 @@
-# Created by .ignore support plugin (hsz.mobi)
 ### Node template
 # Logs
 logs
@@ -77,3 +76,6 @@ typings/
 
 # Service worker
 sw.*
+
+#misc
+demo/node_modules

@@ -1,72 +1,142 @@
 {
   "name": "v-dropdown-menu",
   "version": "1.3.2",
-  "description": "Dropdown menu plugin for vuejs, supported ssr.",
-  "main": "dist/v-dropdown-menu.js",
-  "browser": "dist/v-dropdown-menu.esm.js",
-  "module": "dist/v-dropdown-menu.esm.js",
-  "unpkg": "dist/v-dropdown-menu.min.js",
-  "files": [
-    "dist/*"
-  ],
-  "scripts": {
-    "serve": "vue-cli-service serve dev/serve.js",
-    "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
-    "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
-    "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
-    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.5",
-    "@rollup/plugin-alias": "^2.2.0",
-    "@rollup/plugin-commonjs": "^11.1.0",
-    "@rollup/plugin-replace": "^2.3.2",
-    "@vue/cli-plugin-babel": "^4.3.1",
-    "@vue/cli-service": "^4.3.1",
-    "cross-env": "^7.0.2",
-    "babel-eslint": "10.0.3",
-    "eslint": "6.8.0",
-    "eslint-config-prettier": "6.10.0",
-    "eslint-loader": "3.0.3",
-    "eslint-plugin-prettier": "3.1.2",
-    "eslint-plugin-vue": "6.1.2",
-    "minimist": "^1.2.5",
-    "pug-plain-loader": "^1.0.0",
-    "prettier": "1.19.1",
-    "rollup": "^2.7.3",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-css-only": "^2.0.0",
-    "rollup-plugin-terser": "^5.3.0",
-    "rollup-plugin-vue": "^5.1.6",
-    "sass-loader": "^8.0.2",
-    "stylelint": "^13.3.2",
-    "stylelint-config-rational-order": "^0.1.2",
-    "stylelint-order": "^4.0.0",
-    "vue": "^2.6.11",
-    "vue-template-compiler": "^2.6.11"
-  },
-  "peerDependencies": {
-    "vue": "^2.6.11"
-  },
-  "engines": {
-    "node": ">=10"
-  },
+  "description": "Customizable dropdown menu for vue 🟩🔽",
   "keywords": [
+    "vue dropdown",
     "vue dropdown menu",
-    "vue dropdown"
+    "vue3 dropdown",
+    "vue2 dropdown"
   ],
   "author": "selimdoyranli",
   "contributors": [
-    "Selim Doyranlı <selim@radkod.com> (https://selimdoyranli.com)"
+    "selimdoyranli <selimdoyranli@gmail.com> (https://selimdoyranli.com)"
   ],
-  "bugs": "selim@radkod.com",
-  "homepage": "https://v-dropdown-menu.now.sh",
+  "bugs": "selimdoyranli@gmail.com",
+  "homepage": "https://v-dropdown-menu.vercel.app",
   "repository": {
     "type": "git",
     "url": "https://github.com/RadKod/v-dropdown-menu"
   },
-  "private": false,
-  "license": "MIT"
+  "main": "dist/vue3/index.js",
+  "module": "dist/vue3/v-dropdown-menu.mjs",
+  "browser": "dist/vue3/v-dropdown-menu.global.js",
+  "unpkg": "dist/vue3/v-dropdown-menu.global.js",
+  "exports": {
+    ".": {
+      "require": "./dist/vue3/v-dropdown-menu.cjs",
+      "import": "./dist/vue3/index.js",
+      "browser": "./dist/vue3/v-dropdown-menu.global.js",
+      "umd": "./dist/vue3/v-dropdown-menu.umd.js",
+      "unpkg": "./dist/vue3/v-dropdown-menu.global.js",
+      "module": "./dist/vue3/v-dropdown-menu.mjs"
+    },
+    "./vue2": "./dist/vue2/index.js"
+  },
+  "files": [
+    "dist",
+    "vue2",
+    "meta",
+    "CHANGELOG.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build:vue3": "cross-env NODE_ENV=production rollup --config build/rollup.config.vue3.js",
+    "build:ssr:vue3": "cross-env NODE_ENV=production rollup --config build/rollup.config.vue3.js --format cjs",
+    "build:es:vue3": "cross-env NODE_ENV=production rollup --config build/rollup.config.vue3.js --format es",
+    "build:unpkg:vue3": "cross-env NODE_ENV=production rollup --config build/rollup.config.vue3.js --format iife",
+    "build:vue2": "cross-env NODE_ENV=production rollup --config build/rollup.config.vue2.js",
+    "build:ssr:vue2": "cross-env NODE_ENV=production rollup --config build/rollup.config.vue2.js --format cjs",
+    "build:es:vue2": "cross-env NODE_ENV=production rollup --config build/rollup.config.vue2.js --format es",
+    "build:unpkg:vue2": "cross-env NODE_ENV=production rollup --config build/rollup.config.vue2.js --format iife",
+    "build": "yarn build:vue3 && yarn build:vue2",
+    "commit": "cz",
+    "changelog": "changelogen",
+    "lint:eslint": "eslint --ext .js,.ts,.json,.vue,.pug --ignore-path .gitignore --ignore-path .eslintignore .",
+    "lint:eslint:fix": "eslint --fix --ext .js,.ts,.json,.vue,.pug --ignore-path .gitignore --ignore-path .eslintignore .",
+    "lint:stylelint": "stylelint \"**/*.{css,sass,scss,less,stylus,vue}\" --ignore-path .stylelintignore",
+    "lint:stylelint:fix": "stylelint --fix \"**/*.{css,sass,scss,less,stylus,vue}\" --ignore-path .stylelintignore",
+    "prettier": "prettier --config ./.prettierrc.js --ignore-path ./.prettierignore --write \"**/*.{js,ts,json,css,scss,vue,html,pug}\" --end-of-line crlf"
+  },
+  "lint-staged": {
+    "*.{ts,js,vue}": [
+      "yarn lint:eslint",
+      "yarn prettier"
+    ],
+    "**/*.{css,sass,scss,less,stylus,vue}": [
+      "yarn lint:stylelint",
+      "yarn prettier"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-modules-umd": "^7.12.1",
+    "@babel/preset-env": "^7.12.10",
+    "@babel/preset-typescript": "^7.21.5",
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
+    "@prettier/plugin-pug": "^2.4.1",
+    "@rollup/plugin-alias": "^3.1.1",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^24.1.0",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-replace": "^5.0.2",
+    "@types/node": "^18.13.0",
+    "@types/stylelint": "14.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "^5.14.0",
+    "@vue/compiler-sfc": "^3.0.4",
+    "autoprefixer": "^10.1.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-plugin-rename-umd-globals": "^1.0.0",
+    "changelogen": "^0.5.3",
+    "commitizen": "^4.3.0",
+    "cross-env": "^7.0.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.34.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.9.0",
+    "flush-promises": "^1.0.2",
+    "husky": "4.2.5",
+    "lint-staged": "^13.2.2",
+    "postcss": "^8.2.1",
+    "postcss-html": "^1.5.0",
+    "postcss-scss": "^4.0.6",
+    "prettier": "^2.8.4",
+    "pug": "^3.0.2",
+    "pug-plain-loader": "^1.1.0",
+    "rollup": "^2.34.2",
+    "rollup-plugin-css-only": "2.0.0",
+    "rollup-plugin-postcss": "^4.0.0",
+    "rollup-plugin-scss": "^4.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "sass": "^1.58.0",
+    "sass-loader": "10.1.1",
+    "stylelint": "14.16.1",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-order": "^6.0.2",
+    "stylelint-scss": "^4.4.0",
+    "typescript": "^4.1.2",
+    "vue-eslint-parser": "^9.1.0",
+    "vue-eslint-parser-template-tokenizer-pug": "^0.4.10",
+    "vue-next": "npm:vue@^3.2.20",
+    "vue-next-rollup-plugin-vue": "npm:rollup-plugin-vue@^6.0.0",
+    "vue-prev": "npm:vue@^2.6.14",
+    "vue-prev-composition-api": "npm:@vue/composition-api@^1.2.4",
+    "vue-prev-rollup-plugin-vue": "npm:rollup-plugin-vue@^5.1.9",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "license": "MIT",
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
 }

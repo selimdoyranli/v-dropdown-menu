@@ -1,1 +1,8 @@
-demo/*
+dist
+/vue2
+/docs
+/meta
+*.min.*
+assets/**/*/vendor
+static/
+public/

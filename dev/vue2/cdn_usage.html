@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
+    <script src="../../dist/vue2/v-dropdown-menu.global.min.js"></script>
+    <link rel="stylesheet" href="../../dist/vue2/v-dropdown-menu.css">
+  </head>
+  <body>
+    <div id="app">
+      <dropdown-menu>
+        <template #trigger>
+          <button>Open Dropdown</button>
+        </template>
+
+        <template #header> Dropdown Header </template>
+
+        <template #body>
+          <ul>
+            <li v-for="i in 6" :key="i">
+              <a href="">Item {{ i }}</a>
+            </li>
+          </ul>
+        </template>
+
+        <template #footer> Dropdown Footer </template>
+      </dropdown-menu>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app'
+      })
+
+      Vue.use(DropdownMenu)
+    </script>
+  </body>
+</html>
