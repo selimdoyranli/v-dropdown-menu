@@ -1,5 +1,8 @@
-var DropdownMenu = (function (vue) {
-  'use strict';
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('vue')) :
+  typeof define === 'function' && define.amd ? define(['vue'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.DropdownMenu = factory(global.Vue));
+})(this, (function (vue) { 'use strict';
 
   var script = vue.defineComponent({
     name: 'DropdownMenu',
@@ -60,13 +63,15 @@ var DropdownMenu = (function (vue) {
         default: 'default'
       }
     },
-    setup: function setup(props, _ref) {
-      var emit = _ref.emit;
-      var baseClassName = 'v-dropdown-menu';
-      var rootRef = vue.ref(null);
-      var triggerRef = vue.ref(null);
-      var overlayRef = vue.ref(null);
-      var menu = vue.reactive({
+    setup(props, _ref) {
+      let {
+        emit
+      } = _ref;
+      const baseClassName = 'v-dropdown-menu';
+      const rootRef = vue.ref(null);
+      const triggerRef = vue.ref(null);
+      const overlayRef = vue.ref(null);
+      const menu = vue.reactive({
         isOpen: props.isOpen,
         mode: props.mode,
         dropup: props.dropup,
@@ -79,45 +84,41 @@ var DropdownMenu = (function (vue) {
         overlayZIndex: props.overlayZIndex,
         transition: props.transition
       });
-      var activeClass = vue.computed(function () {
-        return menu.isOpen ? "".concat(baseClassName, "--active") : null;
+      const activeClass = vue.computed(() => {
+        return menu.isOpen ? `${baseClassName}--active` : null;
       });
-      var modeClass = vue.computed(function () {
-        return menu.mode === 'click' ? "".concat(baseClassName, "--mode-click") : "".concat(baseClassName, "--mode-hover");
+      const modeClass = vue.computed(() => {
+        return menu.mode === 'click' ? `${baseClassName}--mode-click` : `${baseClassName}--mode-hover`;
       });
-      var dropupClass = vue.computed(function () {
-        return menu.dropup ? "".concat(baseClassName, "--dropup") : null;
+      const dropupClass = vue.computed(() => {
+        return menu.dropup ? `${baseClassName}--dropup` : null;
       });
-      var directionClass = vue.computed(function () {
-        var menuDirection = null;
+      const directionClass = vue.computed(() => {
+        let menuDirection = null;
         if (menu.direction === 'left') {
-          menuDirection = "".concat(baseClassName, "--direction-left");
+          menuDirection = `${baseClassName}--direction-left`;
         } else if (menu.direction === 'center') {
-          menuDirection = "".concat(baseClassName, "--direction-center");
+          menuDirection = `${baseClassName}--direction-center`;
         } else {
-          menuDirection = "".concat(baseClassName, "--direction-right");
+          menuDirection = `${baseClassName}--direction-right`;
         }
         return menuDirection;
       });
-      vue.watch(function () {
-        return props.isOpen;
-      }, function (value) {
+      vue.watch(() => props.isOpen, value => {
         if (menu.mode === 'click') {
           if (value) {
-            setTimeout(function () {
+            setTimeout(() => {
               show();
             }, 1); // wait, bypass for closeOnClickOutside
           } else {
-            setTimeout(function () {
+            setTimeout(() => {
               hide();
             }, 1); // wait, bypass for closeOnClickOutside
           }
         }
       });
 
-      vue.watch(function () {
-        return menu.isOpen;
-      }, function (value) {
+      vue.watch(() => menu.isOpen, value => {
         if (menu.mode === 'click') {
           if (value) {
             emit('opened', props);
@@ -126,93 +127,93 @@ var DropdownMenu = (function (vue) {
           }
         }
       });
-      vue.onMounted(function () {
+      vue.onMounted(() => {
         dropdownCloser();
-        vue.nextTick(function () {
+        vue.nextTick(() => {
           if (menu.closeOnClickOutside) {
             registerCloseDropdownOnClickOutside();
           }
         });
         closeDropdownOnPopState();
       });
-      vue.onBeforeUnmount(function () {
+      vue.onBeforeUnmount(() => {
         destroyCloseDropdownOnClickOutside();
         destroyCloseDropdownOnPopState();
       });
 
       // Methods
-      var show = function show() {
+      const show = () => {
         menu.isOpen = true;
       };
-      var hide = function hide() {
+      const hide = () => {
         menu.isOpen = false;
       };
-      var registerCloseDropdownOnClickOutside = function registerCloseDropdownOnClickOutside() {
+      const registerCloseDropdownOnClickOutside = () => {
         window.addEventListener('click', closeDropdownOnClickOutside);
       };
-      var closeDropdownOnClickOutside = function closeDropdownOnClickOutside(e) {
+      const closeDropdownOnClickOutside = e => {
         if (menu.isOpen) {
           if (!rootRef.value.contains(e.target)) {
             menu.isOpen = false;
           }
         }
       };
-      var destroyCloseDropdownOnClickOutside = function destroyCloseDropdownOnClickOutside() {
+      const destroyCloseDropdownOnClickOutside = () => {
         if (menu.closeOnClickOutside) {
           window.removeEventListener('click', closeDropdownOnClickOutside);
         }
       };
-      var dropdownCloser = function dropdownCloser() {
+      const dropdownCloser = () => {
         if (menu.withDropdownCloser) {
-          var dropdown = rootRef.value;
-          dropdown.querySelectorAll('[dropdown-closer]').forEach(function (element) {
-            element.addEventListener('click', function () {
+          const dropdown = rootRef.value;
+          dropdown.querySelectorAll('[dropdown-closer]').forEach(element => {
+            element.addEventListener('click', () => {
               menu.isOpen = false;
             });
           });
         }
       };
-      var closeDropdownOnPopState = function closeDropdownOnPopState() {
-        window.addEventListener('popstate', function () {
+      const closeDropdownOnPopState = () => {
+        window.addEventListener('popstate', () => {
           if (menu.isOpen) {
             menu.isOpen = false;
           }
         });
       };
-      var destroyCloseDropdownOnPopState = function destroyCloseDropdownOnPopState() {
+      const destroyCloseDropdownOnPopState = () => {
         window.removeEventListener('popstate', closeDropdownOnPopState);
       };
       return {
-        rootRef: rootRef,
-        triggerRef: triggerRef,
-        overlayRef: overlayRef,
-        menu: menu,
-        show: show,
-        hide: hide,
-        activeClass: activeClass,
-        modeClass: modeClass,
-        dropupClass: dropupClass,
-        directionClass: directionClass
+        rootRef,
+        triggerRef,
+        overlayRef,
+        menu,
+        show,
+        hide,
+        activeClass,
+        modeClass,
+        dropupClass,
+        directionClass
       };
     }
   });
 
-  var _hoisted_1 = {
+  const _hoisted_1 = {
     class: "v-dropdown-menu__header"
   };
-  var _hoisted_2 = {
+  const _hoisted_2 = {
     class: "v-dropdown-menu__body"
   };
-  var _hoisted_3 = {
+  const _hoisted_3 = {
     class: "v-dropdown-menu__footer"
   };
-  var _hoisted_4 = {
+  const _hoisted_4 = {
     class: "v-dropdown-menu__header"
   };
-  var _hoisted_5 = {
+  const _hoisted_5 = {
     class: "v-dropdown-menu__body"
   };
-  var _hoisted_6 = {
+  const _hoisted_6 = {
     class: "v-dropdown-menu__footer"
   };
   function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -224,21 +225,17 @@ var DropdownMenu = (function (vue) {
     }, [vue.createElementVNode("div", {
       class: "v-dropdown-menu__trigger",
       ref: "triggerRef",
-      onClick: _cache[0] || (_cache[0] = vue.withModifiers(function ($event) {
-        return _ctx.menu.isOpen = !_ctx.menu.isOpen;
-      }, ["prevent"]))
+      onClick: _cache[0] || (_cache[0] = vue.withModifiers($event => _ctx.menu.isOpen = !_ctx.menu.isOpen, ["prevent"]))
     }, [vue.renderSlot(_ctx.$slots, "trigger")], 512), vue.createVNode(vue.Transition, {
       mode: "out-in",
       name: _ctx.menu.transition
     }, {
-      default: vue.withCtx(function () {
-        return [vue.withDirectives(vue.createElementVNode("div", {
-          class: "v-dropdown-menu__container",
-          style: vue.normalizeStyle({
-            'z-index': _ctx.menu.containerZIndex
-          })
-        }, [vue.createElementVNode("div", _hoisted_1, [vue.renderSlot(_ctx.$slots, "header")]), vue.createElementVNode("div", _hoisted_2, [vue.renderSlot(_ctx.$slots, "body")]), vue.createElementVNode("div", _hoisted_3, [vue.renderSlot(_ctx.$slots, "footer")])], 4), [[vue.vShow, _ctx.menu.isOpen]])];
-      }),
+      default: vue.withCtx(() => [vue.withDirectives(vue.createElementVNode("div", {
+        class: "v-dropdown-menu__container",
+        style: vue.normalizeStyle({
+          'z-index': _ctx.menu.containerZIndex
+        })
+      }, [vue.createElementVNode("div", _hoisted_1, [vue.renderSlot(_ctx.$slots, "header")]), vue.createElementVNode("div", _hoisted_2, [vue.renderSlot(_ctx.$slots, "body")]), vue.createElementVNode("div", _hoisted_3, [vue.renderSlot(_ctx.$slots, "footer")])], 4), [[vue.vShow, _ctx.menu.isOpen]])]),
       _: 3
     }, 8, ["name"])], 64)) : vue.createCommentVNode("", true), _ctx.menu.mode === 'hover' ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, {
       key: 1
@@ -246,28 +243,26 @@ var DropdownMenu = (function (vue) {
       class: "v-dropdown-menu__trigger",
       ref: "triggerRef",
       onMouseover: _cache[1] || (_cache[1] = vue.withModifiers(function () {
-        return _ctx.show && _ctx.show.apply(_ctx, arguments);
+        return _ctx.show && _ctx.show(...arguments);
       }, ["prevent"])),
       onMouseleave: _cache[2] || (_cache[2] = vue.withModifiers(function () {
-        return _ctx.hide && _ctx.hide.apply(_ctx, arguments);
+        return _ctx.hide && _ctx.hide(...arguments);
       }, ["prevent"]))
     }, [vue.renderSlot(_ctx.$slots, "trigger")], 544), vue.createVNode(vue.Transition, {
       name: _ctx.menu.transition
     }, {
-      default: vue.withCtx(function () {
-        return [vue.withDirectives(vue.createElementVNode("div", {
-          class: "v-dropdown-menu__container",
-          style: vue.normalizeStyle({
-            'z-index': _ctx.menu.containerZIndex
-          }),
-          onMouseover: _cache[3] || (_cache[3] = vue.withModifiers(function () {
-            return _ctx.show && _ctx.show.apply(_ctx, arguments);
-          }, ["prevent"])),
-          onMouseleave: _cache[4] || (_cache[4] = vue.withModifiers(function () {
-            return _ctx.hide && _ctx.hide.apply(_ctx, arguments);
-          }, ["prevent"]))
-        }, [vue.createElementVNode("div", _hoisted_4, [vue.renderSlot(_ctx.$slots, "header")]), vue.createElementVNode("div", _hoisted_5, [vue.renderSlot(_ctx.$slots, "body")]), vue.createElementVNode("div", _hoisted_6, [vue.renderSlot(_ctx.$slots, "footer")])], 36), [[vue.vShow, _ctx.menu.isOpen]])];
-      }),
+      default: vue.withCtx(() => [vue.withDirectives(vue.createElementVNode("div", {
+        class: "v-dropdown-menu__container",
+        style: vue.normalizeStyle({
+          'z-index': _ctx.menu.containerZIndex
+        }),
+        onMouseover: _cache[3] || (_cache[3] = vue.withModifiers(function () {
+          return _ctx.show && _ctx.show(...arguments);
+        }, ["prevent"])),
+        onMouseleave: _cache[4] || (_cache[4] = vue.withModifiers(function () {
+          return _ctx.hide && _ctx.hide(...arguments);
+        }, ["prevent"]))
+      }, [vue.createElementVNode("div", _hoisted_4, [vue.renderSlot(_ctx.$slots, "header")]), vue.createElementVNode("div", _hoisted_5, [vue.renderSlot(_ctx.$slots, "body")]), vue.createElementVNode("div", _hoisted_6, [vue.renderSlot(_ctx.$slots, "footer")])], 36), [[vue.vShow, _ctx.menu.isOpen]])]),
       _: 3
     }, 8, ["name"])], 64)) : vue.createCommentVNode("", true), _ctx.menu.overlay && _ctx.menu.closeOnClickOutside && _ctx.menu.mode === 'click' ? vue.withDirectives((vue.openBlock(), vue.createElementBlock("div", {
       key: 2,
@@ -278,7 +273,7 @@ var DropdownMenu = (function (vue) {
         'z-index': _ctx.menu.overlayZIndex
       }),
       onMousedown: _cache[5] || (_cache[5] = vue.withModifiers(function () {
-        return _ctx.hide && _ctx.hide.apply(_ctx, arguments);
+        return _ctx.hide && _ctx.hide(...arguments);
       }, ["prevent"]))
     }, null, 36)), [[vue.vShow, _ctx.menu.isOpen]]) : vue.createCommentVNode("", true)], 2);
   }
@@ -290,12 +285,12 @@ var DropdownMenu = (function (vue) {
   // Default export is installable instance of component.
   // IIFE injects install function into component, allowing component
   // to be registered via Vue.use() as well as Vue.component(),
-  var entry = /*#__PURE__*/(function () {
+  var entry = /*#__PURE__*/(() => {
     // Assign InstallableComponent type
-    var installable = script;
+    const installable = script;
 
     // Attach install function executed by Vue.use()
-    installable.install = function (app) {
+    installable.install = app => {
       app.component('DropdownMenu', installable);
     };
     return installable;
@@ -307,4 +302,4 @@ var DropdownMenu = (function (vue) {
 
   return entry;
 
-})(Vue);
+}));

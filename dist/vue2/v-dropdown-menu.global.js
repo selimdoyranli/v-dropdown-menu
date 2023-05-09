@@ -1,5 +1,8 @@
-var DropdownMenu = (function () {
-  'use strict';
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.DropdownMenu = factory());
+})(this, (function () { 'use strict';
 
   //
   //
@@ -104,7 +107,7 @@ var DropdownMenu = (function () {
         default: 'default'
       }
     },
-    data: function data() {
+    data() {
       return {
         baseClassName: 'v-dropdown-menu',
         menu: {
@@ -123,43 +126,43 @@ var DropdownMenu = (function () {
       };
     },
     computed: {
-      activeClass: function activeClass() {
-        return this.menu.isOpen ? "".concat(this.baseClassName, "--active") : null;
+      activeClass() {
+        return this.menu.isOpen ? `${this.baseClassName}--active` : null;
       },
-      modeClass: function modeClass() {
-        return this.menu.mode === 'click' ? "".concat(this.baseClassName, "--mode-click") : "".concat(this.baseClassName, "--mode-hover");
+      modeClass() {
+        return this.menu.mode === 'click' ? `${this.baseClassName}--mode-click` : `${this.baseClassName}--mode-hover`;
       },
-      dropupClass: function dropupClass() {
-        return this.menu.dropup ? "".concat(this.baseClassName, "--dropup") : null;
+      dropupClass() {
+        return this.menu.dropup ? `${this.baseClassName}--dropup` : null;
       },
-      directionClass: function directionClass() {
-        var menuDirection = null;
+      directionClass() {
+        let menuDirection = null;
         if (this.menu.direction === 'left') {
-          menuDirection = "".concat(this.baseClassName, "--direction-left");
+          menuDirection = `${this.baseClassName}--direction-left`;
         } else if (this.menu.direction === 'center') {
-          menuDirection = "".concat(this.baseClassName, "--direction-center");
+          menuDirection = `${this.baseClassName}--direction-center`;
         } else {
-          menuDirection = "".concat(this.baseClassName, "--direction-right");
+          menuDirection = `${this.baseClassName}--direction-right`;
         }
         return menuDirection;
       }
     },
     watch: {
-      isOpen: function isOpen(value) {
-        var _this = this;
+      isOpen(value) {
         if (this.menu.mode === 'click') {
           if (value) {
-            setTimeout(function () {
-              _this.show();
+            setTimeout(() => {
+              this.show();
             }, 1); // wait, bypass for closeOnClickOutside
           } else {
-            setTimeout(function () {
-              _this.hide();
+            setTimeout(() => {
+              this.hide();
             }, 1); // wait, bypass for closeOnClickOutside
           }
         }
       },
-      'menu.isOpen': function menuIsOpen(value) {
+
+      'menu.isOpen'(value) {
         if (this.menu.mode === 'click') {
           if (value) {
             this.$emit('opened', this.$props);
@@ -169,62 +172,59 @@ var DropdownMenu = (function () {
         }
       }
     },
-    mounted: function mounted() {
-      var _this2 = this;
+    mounted() {
       this.dropdownCloser();
-      this.$nextTick(function () {
-        if (_this2.menu.closeOnClickOutside) {
-          _this2.registerCloseDropdownOnClickOutside();
+      this.$nextTick(() => {
+        if (this.menu.closeOnClickOutside) {
+          this.registerCloseDropdownOnClickOutside();
         }
       });
       this.closeDropdownOnPopState();
     },
-    beforeDestroy: function beforeDestroy() {
+    beforeDestroy() {
       this.destroyCloseDropdownOnClickOutside();
       this.destroyCloseDropdownOnPopState();
     },
     methods: {
-      show: function show() {
+      show() {
         this.menu.isOpen = true;
       },
-      hide: function hide() {
+      hide() {
         this.menu.isOpen = false;
       },
-      registerCloseDropdownOnClickOutside: function registerCloseDropdownOnClickOutside() {
+      registerCloseDropdownOnClickOutside() {
         window.addEventListener('click', this.closeDropdownOnClickOutside);
       },
-      closeDropdownOnClickOutside: function closeDropdownOnClickOutside(e) {
+      closeDropdownOnClickOutside(e) {
         if (this.menu.isOpen) {
           if (!this.$refs.rootRef.contains(e.target)) {
             this.menu.isOpen = false;
           }
         }
       },
-      destroyCloseDropdownOnClickOutside: function destroyCloseDropdownOnClickOutside() {
+      destroyCloseDropdownOnClickOutside() {
         if (this.menu.closeOnClickOutside) {
           window.removeEventListener('click', this.closeDropdownOnClickOutside);
         }
       },
-      dropdownCloser: function dropdownCloser() {
-        var _this3 = this;
+      dropdownCloser() {
         if (this.menu.withDropdownCloser) {
-          var dropdown = this.$refs.rootRef;
-          dropdown.querySelectorAll('[dropdown-closer]').forEach(function (element) {
-            element.addEventListener('click', function () {
-              _this3.menu.isOpen = false;
+          const dropdown = this.$refs.rootRef;
+          dropdown.querySelectorAll('[dropdown-closer]').forEach(element => {
+            element.addEventListener('click', () => {
+              this.menu.isOpen = false;
             });
           });
         }
       },
-      closeDropdownOnPopState: function closeDropdownOnPopState() {
-        var _this4 = this;
-        window.addEventListener('popstate', function () {
-          if (_this4.menu.isOpen) {
-            _this4.menu.isOpen = false;
+      closeDropdownOnPopState() {
+        window.addEventListener('popstate', () => {
+          if (this.menu.isOpen) {
+            this.menu.isOpen = false;
           }
         });
       },
-      destroyCloseDropdownOnPopState: function destroyCloseDropdownOnPopState() {
+      destroyCloseDropdownOnPopState() {
         window.removeEventListener('popstate', this.closeDropdownOnPopState);
       }
     }
@@ -306,9 +306,9 @@ var DropdownMenu = (function () {
   }
 
   /* script */
-  var __vue_script__ = script;
+  const __vue_script__ = script;
   /* template */
-  var __vue_render__ = function __vue_render__() {
+  var __vue_render__ = function () {
     var _vm = this;
     var _h = _vm.$createElement;
     var _c = _vm._self._c || _h;
@@ -320,7 +320,7 @@ var DropdownMenu = (function () {
       ref: "triggerRef",
       staticClass: "v-dropdown-menu__trigger",
       on: {
-        "click": function click($event) {
+        "click": function ($event) {
           $event.preventDefault();
           _vm.menu.isOpen = !_vm.menu.isOpen;
         }
@@ -350,11 +350,11 @@ var DropdownMenu = (function () {
       ref: "triggerRef",
       staticClass: "v-dropdown-menu__trigger",
       on: {
-        "mouseover": function mouseover($event) {
+        "mouseover": function ($event) {
           $event.preventDefault();
           return _vm.show.apply(null, arguments);
         },
-        "mouseleave": function mouseleave($event) {
+        "mouseleave": function ($event) {
           $event.preventDefault();
           return _vm.hide.apply(null, arguments);
         }
@@ -375,11 +375,11 @@ var DropdownMenu = (function () {
         'z-index': _vm.menu.containerZIndex
       },
       on: {
-        "mouseover": function mouseover($event) {
+        "mouseover": function ($event) {
           $event.preventDefault();
           return _vm.show.apply(null, arguments);
         },
-        "mouseleave": function mouseleave($event) {
+        "mouseleave": function ($event) {
           $event.preventDefault();
           return _vm.hide.apply(null, arguments);
         }
@@ -404,7 +404,7 @@ var DropdownMenu = (function () {
         'z-index': _vm.menu.overlayZIndex
       },
       on: {
-        "mousedown": function mousedown($event) {
+        "mousedown": function ($event) {
           $event.preventDefault();
           return _vm.hide.apply(null, arguments);
         }
@@ -414,20 +414,20 @@ var DropdownMenu = (function () {
   var __vue_staticRenderFns__ = [];
 
   /* style */
-  var __vue_inject_styles__ = undefined;
+  const __vue_inject_styles__ = undefined;
   /* scoped */
-  var __vue_scope_id__ = undefined;
+  const __vue_scope_id__ = undefined;
   /* module identifier */
-  var __vue_module_identifier__ = undefined;
+  const __vue_module_identifier__ = undefined;
   /* functional template */
-  var __vue_is_functional_template__ = false;
+  const __vue_is_functional_template__ = false;
   /* style inject */
 
   /* style inject SSR */
 
   /* style inject shadow dom */
 
-  var __vue_component__ = /*#__PURE__*/normalizeComponent({
+  const __vue_component__ = /*#__PURE__*/normalizeComponent({
     render: __vue_render__,
     staticRenderFns: __vue_staticRenderFns__
   }, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);
@@ -435,22 +435,22 @@ var DropdownMenu = (function () {
   // Import vue component
 
   // install function executed by Vue.use()
-  var install = function installDropdownMenu(Vue) {
+  const install = function installDropdownMenu(Vue) {
     if (install.installed) return;
     install.installed = true;
     Vue.component('DropdownMenu', __vue_component__);
   };
 
   // Create module definition for Vue.use()
-  var plugin = {
-    install: install
+  const plugin = {
+    install
   };
 
   // To auto-install on non-es builds, when vue is found
   // eslint-disable-next-line no-redeclare
   /* global window, global */
   {
-    var GlobalVue = null;
+    let GlobalVue = null;
     if (typeof window !== 'undefined') {
       GlobalVue = window.Vue;
     } else if (typeof global !== 'undefined') {
@@ -471,4 +471,4 @@ var DropdownMenu = (function () {
 
   return __vue_component__;
 
-})();
+}));
