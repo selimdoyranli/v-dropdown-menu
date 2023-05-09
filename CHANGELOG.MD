@@ -1,5 +1,22 @@
 # Changelog
 
+## v2.0.0
+
+[compare changes](https://github.com/RadKod/v-dropdown-menu/compare/1.3.1...v2.0.0)
+
+
+### 🚀 Enhancements
+
+  - Vue3 support ([095b053](https://github.com/RadKod/v-dropdown-menu/commit/095b053))
+
+### 🎨 Styles
+
+  - Code formatting ([2a268c1](https://github.com/RadKod/v-dropdown-menu/commit/2a268c1))
+
+### ❤️  Contributors
+
+- Selimdoyranli ([@selimdoyranli](http://github.com/selimdoyranli))
+
 ## 1.3.2
 
   - Added isOpen prop watcher. You can use external trigger.
