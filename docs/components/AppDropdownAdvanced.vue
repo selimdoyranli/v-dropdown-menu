@@ -39,6 +39,10 @@ const writeToConsoleForClosed = value => {
   padding: 0.4rem 0.6rem;
 }
 
+.advanced-demo .v-dropdown-menu__header {
+  color: #201e1b !important;
+}
+
 .v-dropdown-menu.custom-style .v-dropdown-menu__container {
   border: 0;
   border-radius: 5px;
