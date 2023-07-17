@@ -1,5 +1,18 @@
 # Changelog
 
+## v2.0.3
+
+[compare changes](https://github.com/selimdoyranli/v-dropdown-menu/compare/e3f1570...v2.0.3)
+
+
+### 🏡 Chore
+
+  - Rebrand ([18c431f](https://github.com/selimdoyranli/v-dropdown-menu/commit/18c431f))
+
+### ❤️  Contributors
+
+- Selimdoyranli ([@selimdoyranli](http://github.com/selimdoyranli))
+
 ## v2.0.2
 
 [compare changes](https://github.com/selimdoyranli/v-dropdown-menu/compare/v2.0.1...v2.0.2)
