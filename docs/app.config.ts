@@ -4,8 +4,8 @@ export default defineAppConfig({
     description: 'Customizable dropdown menu for vue 🟩🔽',
     image: '/media/preview.jpg',
     socials: {
-      twitter: 'startupekibi',
-      github: 'RadKod/v-dropdown-menu'
+      twitter: 'selimdoyranli',
+      github: 'selimdoyranli/v-dropdown-menu'
     },
     aside: {
       level: 0,
@@ -17,8 +17,8 @@ export default defineAppConfig({
     footer: {
       iconLinks: [
         {
-          href: 'https://buymeacoffee.com/RadKod',
-          icon: 'simple-icons:buymeacoffee'
+          href: 'https://github.com/sponsors/selimdoyranli',
+          icon: 'simple-icons:githubsponsors'
         }
       ]
     }

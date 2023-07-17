@@ -16,7 +16,7 @@
   "homepage": "https://v-dropdown-menu.vercel.app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/RadKod/v-dropdown-menu"
+    "url": "https://github.com/selimdoyranli/v-dropdown-menu"
   },
   "main": "dist/vue3/index.js",
   "module": "dist/vue3/v-dropdown-menu.mjs",

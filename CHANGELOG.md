@@ -2,21 +2,21 @@
 
 ## v2.0.2
 
-[compare changes](https://github.com/RadKod/v-dropdown-menu/compare/v2.0.1...v2.0.2)
+[compare changes](https://github.com/selimdoyranli/v-dropdown-menu/compare/v2.0.1...v2.0.2)
 
 
 ### 📖 Documentation
 
-  - Update docs ([2976033](https://github.com/RadKod/v-dropdown-menu/commit/2976033))
+  - Update docs ([2976033](https://github.com/selimdoyranli/v-dropdown-menu/commit/2976033))
 
 ### 📦 Build
 
-  - Update npm scripts ([a9a69a2](https://github.com/RadKod/v-dropdown-menu/commit/a9a69a2))
+  - Update npm scripts ([a9a69a2](https://github.com/selimdoyranli/v-dropdown-menu/commit/a9a69a2))
 
 ### 🏡 Chore
 
-  - Changelog rename ([ac3ac3b](https://github.com/RadKod/v-dropdown-menu/commit/ac3ac3b))
-  - Changelog rename ([2a925ea](https://github.com/RadKod/v-dropdown-menu/commit/2a925ea))
+  - Changelog rename ([ac3ac3b](https://github.com/selimdoyranli/v-dropdown-menu/commit/ac3ac3b))
+  - Changelog rename ([2a925ea](https://github.com/selimdoyranli/v-dropdown-menu/commit/2a925ea))
 
 ### ❤️  Contributors
 
@@ -24,12 +24,12 @@
 
 ## v2.0.1
 
-[compare changes](https://github.com/RadKod/v-dropdown-menu/compare/e3c1f82...v2.0.1)
+[compare changes](https://github.com/selimdoyranli/v-dropdown-menu/compare/e3c1f82...v2.0.1)
 
 
 ### 💅 Refactors
 
-  - **build:** Refactor build ([90590fd](https://github.com/RadKod/v-dropdown-menu/commit/90590fd))
+  - **build:** Refactor build ([90590fd](https://github.com/selimdoyranli/v-dropdown-menu/commit/90590fd))
 
 ### ❤️  Contributors
 
@@ -37,16 +37,16 @@
 
 ## v2.0.0
 
-[compare changes](https://github.com/RadKod/v-dropdown-menu/compare/1.3.1...v2.0.0)
+[compare changes](https://github.com/selimdoyranli/v-dropdown-menu/compare/1.3.1...v2.0.0)
 
 
 ### 🚀 Enhancements
 
-  - Vue3 support ([095b053](https://github.com/RadKod/v-dropdown-menu/commit/095b053))
+  - Vue3 support ([095b053](https://github.com/selimdoyranli/v-dropdown-menu/commit/095b053))
 
 ### 🎨 Styles
 
-  - Code formatting ([2a268c1](https://github.com/RadKod/v-dropdown-menu/commit/2a268c1))
+  - Code formatting ([2a268c1](https://github.com/selimdoyranli/v-dropdown-menu/commit/2a268c1))
 
 ### ❤️  Contributors
 

@@ -24,16 +24,7 @@ Customizable dropdown menu for vue 🟩🔽
 </p>
 
 <p align="center">
-  <p align="center"><sub>Created by<sub></p>
-    <p align="center">
-	    <a href="https://radkod.com" target="_blank">
-			<img src='/meta/radkod_signature.png' width="128" />
-		</a>
-    </p>
-</p>
-
-<p align="center">
-<a href="https://github.com/RadKod/v-dropdown-menu" target="__blank"><img alt="GitHub stars" src="https://img.shields.io/github/stars/RadKod/v-dropdown-menu?style=social"></a>
+<a href="https://github.com/selimdoyranli/v-dropdown-menu" target="__blank"><img alt="GitHub stars" src="https://img.shields.io/github/stars/selimdoyranli/v-dropdown-menu?style=social"></a>
 </p>
 
 <p align="center">
@@ -41,7 +32,9 @@ Customizable dropdown menu for vue 🟩🔽
 </p>
 
 <div align="center">
-<sub>Buy me a coffee - <a href="https://www.buymeacoffee.com/RadKod">Sponsorship 💖</a></sub><br>
+<sub><b>Sponsorship 💖</b></sub><br>
+<sub><a href="https://github.com/sponsors/selimdoyranli">GitHub</a></sub><br>
+<sub><a href="https://buymeacoffee.com/selimdoyranli">Buy me a coffee</a></sub><br>
 </div>
 
 ## Features
@@ -254,10 +247,16 @@ yarn prettier
 
 ## Sponsorship
 
-You can sponsor us for the continuity of our projects:
+You can sponsor me for the continuity of my projects:
 
 <p align="left">
-  <a href="https://buymeacoffee.com/RadKod">
+  <a href="https://github.com/sponsors/selimdoyranli">
+    <img src='https://img.shields.io/github/sponsors/selimdoyranli?style=for-the-badge&label=%E2%99%A5+Be+Sponsor&logo=GitHub'/>
+  </a>
+</p>
+
+<p align="left">
+  <a href="https://buymeacoffee.com/selimdoyranli">
     <img src='https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png'/>
   </a>
 </p>
@@ -266,13 +265,7 @@ You can sponsor us for the continuity of our projects:
 
 [MIT License](./LICENSE)
 
-Copyright (c) RadKod <info@radkod.com>
-
-<p align="left">
-  <a href="https://radkod.com">
-    <img src='/meta/radkod_signature.png'/>
-  </a>
-</p>
+Copyright (c) selimdoyranli <selimdoyranli@gmail.com>
 
 <!-- Badges -->
 [npm-version-src]: https://img.shields.io/npm/v/v-dropdown-menu/latest.svg
@@ -281,8 +274,8 @@ Copyright (c) RadKod <info@radkod.com>
 [npm-downloads-src]: https://img.shields.io/npm/dt/v-dropdown-menu.svg
 [npm-downloads-href]: https://npmjs.com/package/v-dropdown-menu
 
-[codecov-src]: https://img.shields.io/codecov/c/github/RadKod/v-dropdown-menu.svg
-[codecov-href]: https://codecov.io/gh/RadKod/v-dropdown-menu
+[codecov-src]: https://img.shields.io/codecov/c/github/selimdoyranli/v-dropdown-menu.svg
+[codecov-href]: https://codecov.io/gh/selimdoyranli/v-dropdown-menu
 
 [changelog-src]: https://img.shields.io/static/v1?label=%F0%9F%93%96&message=Release%20Notes%20|%20CHANGELOG&color=blue
 [changelog-href]: ./CHANGELOG.md
