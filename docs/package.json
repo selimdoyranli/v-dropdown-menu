@@ -16,6 +16,6 @@
     "nuxt": "3.3.3"
   },
   "dependencies": {
-    "v-dropdown-menu": "^2.0.1"
+    "v-dropdown-menu": "^2.0.4"
   }
 }

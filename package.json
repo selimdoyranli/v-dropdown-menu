@@ -31,7 +31,9 @@
       "unpkg": "./dist/vue3/v-dropdown-menu.global.js",
       "module": "./dist/vue3/v-dropdown-menu.mjs"
     },
-    "./vue2": "./dist/vue2/index.js"
+    "./css": "./dist/vue3/v-dropdown-menu.css",
+    "./vue2": "./dist/vue2/index.js",
+    "./vue2/css": "./dist/vue2/v-dropdown-menu.css"
   },
   "files": [
     "dist",

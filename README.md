@@ -66,6 +66,7 @@ yarn add v-dropdown-menu  # or npm i v-dropdown-menu
 import { createApp } from 'vue'
 import App from './App.vue'
 import DropdownMenu from 'v-dropdown-menu'
+import 'v-dropdown-menu/css'
 
 const app = createApp(App)
 
@@ -77,7 +78,7 @@ app.mount('#app')
 ```html
 <script setup>
 import DropdownMenu from 'v-dropdown-menu'
-import 'v-dropdown-menu/dist/vue3/v-dropdown-menu.css'
+import 'v-dropdown-menu/css'
 </script>
 ```
 #### Via CDN
@@ -101,6 +102,7 @@ import 'v-dropdown-menu/dist/vue3/v-dropdown-menu.css'
 ```js
 import Vue from "vue"
 import DropdownMenu from "v-dropdown-menu/vue2"
+import 'v-dropdown-menu/vue2/css'
 
 Vue.use(DropdownMenu);
 ```
@@ -108,7 +110,7 @@ Vue.use(DropdownMenu);
 #### Local Register
 ```js
 import DropdownMenu from "v-dropdown-menu/vue2"
-import "v-dropdown-menu/dist/vue2/v-dropdown-menu.css"
+import 'v-dropdown-menu/vue2/css'
 
 export default {
   components: {

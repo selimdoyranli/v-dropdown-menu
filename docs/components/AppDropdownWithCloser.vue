@@ -21,7 +21,7 @@
 
 <script setup>
 import DropdownMenu from 'v-dropdown-menu'
-import '/node_modules/v-dropdown-menu/dist/vue3/v-dropdown-menu.css'
+import 'v-dropdown-menu/css'
 </script>
 
 <style scoped>
