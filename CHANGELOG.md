@@ -1,5 +1,18 @@
 # Changelog
 
+## v2.0.4
+
+[compare changes](https://github.com/selimdoyranli/v-dropdown-menu/compare/v2.0.3...v2.0.4)
+
+
+### 🩹 Fixes
+
+  - Css file export fix ([92f78c8](https://github.com/selimdoyranli/v-dropdown-menu/commit/92f78c8))
+
+### ❤️  Contributors
+
+- Selimdoyranli ([@selimdoyranli](http://github.com/selimdoyranli))
+
 ## v2.0.3
 
 [compare changes](https://github.com/selimdoyranli/v-dropdown-menu/compare/e3f1570...v2.0.3)
